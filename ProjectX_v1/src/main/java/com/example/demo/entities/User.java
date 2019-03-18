@@ -55,7 +55,6 @@ public class User implements Serializable {
     private List<Artist> artistList;
     @JoinColumn(name = "typeId", referencedColumnName = "typeId")
     @ManyToOne(optional = false)
-    @JsonIgnore
     private UserType typeId;
 
     public User() {
