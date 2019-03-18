@@ -27,7 +27,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  * @author Leopold
  */
 @Entity
-@Table(name = "users")
+@Table(name = "user")
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
