@@ -8,4 +8,5 @@ import com.example.demo.entities.User;
 public interface UserService {
 	public List<User> getAll();
 	public User save(User user);
+	public User findByEmail(String email);
 }

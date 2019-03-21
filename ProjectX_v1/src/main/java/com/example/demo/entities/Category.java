@@ -47,6 +47,10 @@ public class Category implements Serializable {
     @Lob
     @Column(name = "detail")
     private String detail;
+    
+    @Basic(optional = false)
+    @Column(name = "image_path")
+    private String image_path;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "categoryId", fetch = FetchType.LAZY)
     private List<Track> trackList;
 
