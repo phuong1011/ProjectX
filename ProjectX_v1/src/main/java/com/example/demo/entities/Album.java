@@ -27,6 +27,8 @@ import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  *
  * @author Leopold
@@ -58,6 +60,7 @@ public class Album implements Serializable {
     @Column(name = "releaseDate")
     @Temporal(TemporalType.DATE)
     private Date releaseDate;
+    @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "album", fetch = FetchType.LAZY)
     private Artist artist;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "albumId", fetch = FetchType.LAZY)

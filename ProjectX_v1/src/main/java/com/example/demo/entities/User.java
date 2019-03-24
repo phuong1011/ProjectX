@@ -51,6 +51,7 @@ public class User implements Serializable {
     @Basic(optional = false)
     @Column(name = "provider_id")
     private String providerId;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId", fetch = FetchType.LAZY)
     private List<Artist> artistList;
     @JoinColumn(name = "typeId", referencedColumnName = "typeId")

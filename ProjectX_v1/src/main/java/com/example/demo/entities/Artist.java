@@ -25,6 +25,8 @@ import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  *
  * @author Leopold
@@ -63,6 +65,7 @@ public class Artist implements Serializable {
     @JoinColumn(name = "userId", referencedColumnName = "userId")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private User userId;
+    @JsonIgnore
     @JoinColumn(name = "artistId", referencedColumnName = "artistId", insertable = false, updatable = false)
     @OneToOne(optional = false, fetch = FetchType.LAZY)
     private Album album;
