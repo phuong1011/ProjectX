@@ -9,5 +9,5 @@ import com.example.demo.entities.Playlist;
 
 @Repository("playlistRepository")
 public interface PlaylistRepository extends JpaRepository<Playlist, String>{
-	public List<Playlist> findAllByUserId(int id);
+	public List<Playlist> findAllByUserId(int userId);
 }
