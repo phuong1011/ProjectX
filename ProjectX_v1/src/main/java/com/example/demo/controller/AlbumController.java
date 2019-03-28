@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Collections;
 import java.util.Random;
 import java.util.logging.Logger;
 
@@ -68,6 +69,25 @@ public class AlbumController {
 	        	}
 		        
 		    }
+		} catch (Exception e) {
+			logger.info(e.getMessage());
+		}
+        
+        if (list.isEmpty()) {
+            return new ResponseEntity(null,HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<List<Album>>(list, HttpStatus.OK);
+    }
+	
+	@RequestMapping(value = "/album-new", method = RequestMethod.GET)
+    public ResponseEntity<List<Album>> newAlbum() {
+		List<Album> list = new ArrayList<>();
+		try {
+			List<Album> allList = albumService.getAll();
+			for(int i = allList.size()-10;i < allList.size();i++) {
+				list.add(allList.get(i));
+				Collections.sort(list, Collections.reverseOrder());;
+			}
 		} catch (Exception e) {
 			logger.info(e.getMessage());
 		}
