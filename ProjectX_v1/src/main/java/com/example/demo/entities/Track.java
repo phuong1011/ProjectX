@@ -25,6 +25,8 @@ import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  *
  * @author Leopold
@@ -62,19 +64,23 @@ public class Track implements Serializable {
     @Basic(optional = false)
     @Column(name = "userUploadId")
     private String userUploadId;
+    @JsonIgnore
     @JoinTable(name = "playlist_track", joinColumns = {
         @JoinColumn(name = "trackId", referencedColumnName = "trackId")}, inverseJoinColumns = {
         @JoinColumn(name = "playlistId", referencedColumnName = "playlistId")})
     @ManyToMany(fetch = FetchType.LAZY)
     private List<Playlist> playlistList;
+    @JsonIgnore
     @JoinTable(name = "artist_track", joinColumns = {
         @JoinColumn(name = "trackId", referencedColumnName = "trackId")}, inverseJoinColumns = {
         @JoinColumn(name = "artistId", referencedColumnName = "artistId")})
     @ManyToMany(fetch = FetchType.LAZY)
     private List<Artist> artistList;
+    @JsonIgnore
     @JoinColumn(name = "categoryId", referencedColumnName = "categoryId")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Category categoryId;
+    @JsonIgnore
     @JoinColumn(name = "albumId", referencedColumnName = "albumId")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Album albumId;
