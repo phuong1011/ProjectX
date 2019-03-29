@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -42,8 +43,8 @@ public class TrackController {
         return new ResponseEntity<List<Track>>(list, HttpStatus.OK);
     }
 	
-	@RequestMapping(value = "/track", method = RequestMethod.GET)
-    public ResponseEntity<Track> getTrackById(@RequestParam(name = "trackId")Integer trackId) {
+	@RequestMapping(value = "/track/{trackId}", method = RequestMethod.GET)
+    public ResponseEntity<Track> getTrackById(@PathVariable("trackId")Integer trackId) {
 		Track track = new Track();
 		try {
 			track = trackService.getOneById(trackId);
