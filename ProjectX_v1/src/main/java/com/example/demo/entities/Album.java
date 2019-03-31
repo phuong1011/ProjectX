@@ -57,6 +57,9 @@ public class Album implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date releaseDate;
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name="category_id")
+    private Category category;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name="artist_id")
     private Artist artist;
     @JsonIgnore
@@ -77,7 +80,15 @@ public class Album implements Serializable {
         this.releaseDate = releaseDate;
     }
 
-    public Integer getAlbumId() {
+    public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
+	public Integer getAlbumId() {
         return albumId;
     }
 

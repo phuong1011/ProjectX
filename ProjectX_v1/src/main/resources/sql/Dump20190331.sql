@@ -21,7 +21,7 @@
 
 LOCK TABLES `album` WRITE;
 /*!40000 ALTER TABLE `album` DISABLE KEYS */;
-INSERT INTO `album` VALUES (1,'Lac Troi','image','2018-12-12',1),(2,'Nang am xa dan','image','2018-02-12',1),(3,'Noi nay co anh','image','2019-01-01',1);
+INSERT INTO `album` VALUES (1,'Lac Troi','imageLactroi','2019-12-10',1,1),(2,'Bua yeu','imageBuaYeu','2019-12-13',2,1);
 /*!40000 ALTER TABLE `album` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -31,7 +31,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `artist` WRITE;
 /*!40000 ALTER TABLE `artist` DISABLE KEYS */;
-INSERT INTO `artist` VALUES (1,'Son Tung','image','Tung nui','url','123');
+INSERT INTO `artist` VALUES (1,'Son Tung','image','test','test','1234'),(2,'Bich Phuong','image','test','test','1235');
 /*!40000 ALTER TABLE `artist` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -41,6 +41,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `category` WRITE;
 /*!40000 ALTER TABLE `category` DISABLE KEYS */;
+INSERT INTO `category` VALUES (1,'Pop','pop','imagepop'),(2,'Rap','rap','imagerap'),(3,'EDM','edm','imageedm'),(4,'EDM','nhac dien tu','imageEDM'),(5,'POP','nhac pop','imagePOP');
 /*!40000 ALTER TABLE `category` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -86,7 +87,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES ('123','Nguyen Son Tung','1995/11/11','tung@gmail.co',1,'1',2);
+INSERT INTO `user` VALUES ('1234','Tung','10/11/1995','phuonglt@gmail.com',0,'1',2),('1235','Phuong','10/11/1995','phuonglt@gmail.com',1,'1',2);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -96,7 +97,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `user_type` WRITE;
 /*!40000 ALTER TABLE `user_type` DISABLE KEYS */;
-INSERT INTO `user_type` VALUES (1,'Admin'),(2,'Artist');
+INSERT INTO `user_type` VALUES (1,'Admin'),(2,'Artist'),(3,'User');
 /*!40000 ALTER TABLE `user_type` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -109,4 +110,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-03-31 16:40:37
+-- Dump completed on 2019-03-31 17:12:22

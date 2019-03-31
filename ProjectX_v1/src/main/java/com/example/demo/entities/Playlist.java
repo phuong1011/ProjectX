@@ -16,7 +16,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -48,6 +50,9 @@ public class Playlist implements Serializable {
     private String userId;
     @Column(name = "type")
     private int type;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name="category_id")
+    private Category category;
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "playlist", fetch = FetchType.LAZY)
     private List<Track> trackList;
@@ -66,7 +71,23 @@ public class Playlist implements Serializable {
         this.userId = userId;
     }
 
-    public Integer getPlaylistId() {
+    public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
+	public List<Track> getTrackList() {
+		return trackList;
+	}
+
+	public void setTrackList(List<Track> trackList) {
+		this.trackList = trackList;
+	}
+
+	public Integer getPlaylistId() {
         return playlistId;
     }
 
