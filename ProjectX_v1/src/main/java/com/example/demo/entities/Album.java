@@ -56,10 +56,11 @@ public class Album implements Serializable {
     @Column(name = "releaseDate")
     @Temporal(TemporalType.DATE)
     private Date releaseDate;
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name="artist_id")
     private Artist artist;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "album", fetch = FetchType.LAZY)
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "album", fetch = FetchType.EAGER)
     private List<Track> trackList;
 
     public Album() {

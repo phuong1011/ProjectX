@@ -39,11 +39,11 @@ public class Artist implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "artistId")
+    @Column(name = "artist_id")
     private Integer artistId;
     @Basic(optional = false)
     @Lob
-    @Column(name = "artistName")
+    @Column(name = "artist_name")
     private String artistName;
     @Basic(optional = false)
     @Lob
@@ -58,7 +58,7 @@ public class Artist implements Serializable {
     @Column(name = "background_path")
     private String backgroundPath;
     @JoinColumn(name = "userId", referencedColumnName = "userId",columnDefinition="varchar(50)")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     @JsonIgnore
     private User userId;
 

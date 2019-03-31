@@ -23,6 +23,8 @@ import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  *
  * @author Leopold
@@ -48,6 +50,7 @@ public class Category implements Serializable {
     @Basic(optional = false)
     @Column(name = "image_path")
     private String image_path;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "category", fetch = FetchType.LAZY)
     private List<Track> trackList;
 

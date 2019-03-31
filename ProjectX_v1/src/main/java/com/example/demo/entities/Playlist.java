@@ -20,6 +20,8 @@ import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  *
  * @author Leopold
@@ -46,6 +48,7 @@ public class Playlist implements Serializable {
     private String userId;
     @Column(name = "type")
     private int type;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "playlist", fetch = FetchType.LAZY)
     private List<Track> trackList;
 

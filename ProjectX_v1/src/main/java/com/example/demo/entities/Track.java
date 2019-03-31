@@ -62,13 +62,13 @@ public class Track implements Serializable {
     @Column(name = "userUploadId")
     private String userUploadId;
     @JoinColumn(name = "categoryId", referencedColumnName = "categoryId")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Category category;
     @JoinColumn(name = "albumId", referencedColumnName = "albumId")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Album album;
     @JoinColumn(name = "playlistId", referencedColumnName = "playlistId")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Playlist playlist;
 
     public Track() {
