@@ -8,5 +8,5 @@ import com.example.demo.entities.User;
 
 @Repository("trackRepository")
 public interface TrackRepository extends JpaRepository<Track, String>{
-	public Track findByTrackId(Integer id);
+	Track findByTrackId(Integer id);
 }

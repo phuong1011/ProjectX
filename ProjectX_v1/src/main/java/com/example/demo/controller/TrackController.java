@@ -20,8 +20,6 @@ import com.example.demo.service.TrackService;
 public class TrackController {
 
 	private TrackService trackService;
-	
-	private Logger logger;
 
 	@Autowired
 	public void setTrackService(TrackService trackService) {
@@ -31,11 +29,7 @@ public class TrackController {
 	@RequestMapping(value = "/alltrack", method = RequestMethod.GET)
     public ResponseEntity<List<Track>> listAll() {
 		List<Track> list = new ArrayList<>();
-		try {
 			list = trackService.getAll();
-		} catch (Exception e) {
-			logger.info(e.getMessage());
-		}
         
         if (list.isEmpty()) {
             return new ResponseEntity(null,HttpStatus.NO_CONTENT);
@@ -46,16 +40,14 @@ public class TrackController {
 	@RequestMapping(value = "/track/{trackId}", method = RequestMethod.GET)
     public ResponseEntity<Track> getTrackById(@PathVariable("trackId")Integer trackId) {
 		Track track = new Track();
-		try {
 			track = trackService.getOneById(trackId);
-		} catch (Exception e) {
- 			logger.info(e.getMessage());
-		}
         
 		if (track == null) {
             return new ResponseEntity(null,HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<Track>(track, HttpStatus.OK);
     }
+	
+	
 	
 }

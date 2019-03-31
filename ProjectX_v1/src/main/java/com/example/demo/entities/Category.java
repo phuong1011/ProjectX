@@ -85,7 +85,15 @@ public class Category implements Serializable {
         this.detail = detail;
     }
 
-    @Override
+    public String getImage_path() {
+		return image_path;
+	}
+
+	public void setImage_path(String image_path) {
+		this.image_path = image_path;
+	}
+
+	@Override
     public int hashCode() {
         int hash = 0;
         hash += (categoryId != null ? categoryId.hashCode() : 0);

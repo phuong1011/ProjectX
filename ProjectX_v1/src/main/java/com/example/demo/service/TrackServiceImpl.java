@@ -28,6 +28,12 @@ public class TrackServiceImpl implements TrackService{
 		Track track = trackRepository.findByTrackId(id);
 		return track;
 	}
+
+	@Override
+	public Track FindByName(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 }
