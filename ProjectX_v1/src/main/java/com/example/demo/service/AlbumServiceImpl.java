@@ -27,5 +27,5 @@ public class AlbumServiceImpl implements AlbumService {
 	public List<Album> getAllOrderByReleaseDate() {
 		return albumRepository.findAllByOrderByReleaseDateDesc();
 	}
-	
+
 }

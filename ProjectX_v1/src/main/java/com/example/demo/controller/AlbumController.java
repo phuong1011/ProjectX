@@ -1,6 +1,10 @@
 package com.example.demo.controller;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Collections;
+import java.util.Random;
+import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,12 +21,11 @@ import com.example.demo.service.AlbumService;
 public class AlbumController {
 	
 	private AlbumService albumService;
-	
+
 	@Autowired
 	public void setAlbumService(AlbumService albumService) {
 		this.albumService = albumService;
 	}
-
 
 
 	@RequestMapping(value = "/album/date", method = RequestMethod.GET)
