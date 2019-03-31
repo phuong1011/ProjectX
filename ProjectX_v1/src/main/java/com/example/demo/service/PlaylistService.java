@@ -6,5 +6,7 @@ import com.example.demo.entities.Playlist;
 
 public interface PlaylistService {
 	public List<Playlist> getAll();
-	public List<Playlist> getAllPlaylistByUserId(int userId);
+	public List<Playlist> getAllPlaylistByUserId(String userId);
+	public List<Playlist> getAllPlaylistByCategoryId(int cateId);
+	public List<Playlist> getAllFollowPlaylistByUserId(String userId);
 }

@@ -53,9 +53,6 @@ public class Playlist implements Serializable {
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name="category_id")
     private Category category;
-    @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "playlist", fetch = FetchType.LAZY)
-    private List<Track> trackList;
 
     public Playlist() {
     }
@@ -77,14 +74,6 @@ public class Playlist implements Serializable {
 
 	public void setCategory(Category category) {
 		this.category = category;
-	}
-
-	public List<Track> getTrackList() {
-		return trackList;
-	}
-
-	public void setTrackList(List<Track> trackList) {
-		this.trackList = trackList;
 	}
 
 	public Integer getPlaylistId() {

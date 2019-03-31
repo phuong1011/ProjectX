@@ -6,7 +6,7 @@
 package com.example.demo.entities;
 
 import java.io.Serializable;
-import java.util.List;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,17 +15,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.Lob;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  *
@@ -61,15 +53,9 @@ public class Track implements Serializable {
     @Basic(optional = false)
     @Column(name = "userUploadId")
     private String userUploadId;
-    @JoinColumn(name = "categoryId", referencedColumnName = "categoryId")
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
-    private Category category;
     @JoinColumn(name = "albumId", referencedColumnName = "albumId")
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Album album;
-    @JoinColumn(name = "playlistId", referencedColumnName = "playlistId")
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
-    private Playlist playlist;
 
     public Track() {
     }
@@ -116,28 +102,12 @@ public class Track implements Serializable {
         return audioPath;
     }
 
-    public Category getCategory() {
-		return category;
-	}
-
-	public void setCategory(Category category) {
-		this.category = category;
-	}
-
 	public Album getAlbum() {
 		return album;
 	}
 
 	public void setAlbum(Album album) {
 		this.album = album;
-	}
-
-	public Playlist getPlaylist() {
-		return playlist;
-	}
-
-	public void setPlaylist(Playlist playlist) {
-		this.playlist = playlist;
 	}
 
 	public void setAudioPath(String audioPath) {

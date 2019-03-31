@@ -7,6 +7,7 @@ package com.example.demo.entities;
 
 import java.io.Serializable;
 import java.util.List;
+
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -16,11 +17,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -46,13 +44,9 @@ public class Category implements Serializable {
     @Lob
     @Column(name = "detail")
     private String detail;
-    
     @Basic(optional = false)
     @Column(name = "image_path")
     private String image_path;
-    @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "category", fetch = FetchType.LAZY)
-    private List<Track> trackList;
 
     public Category() {
     }
@@ -89,15 +83,6 @@ public class Category implements Serializable {
 
     public void setDetail(String detail) {
         this.detail = detail;
-    }
-
-    @XmlTransient
-    public List<Track> getTrackList() {
-        return trackList;
-    }
-
-    public void setTrackList(List<Track> trackList) {
-        this.trackList = trackList;
     }
 
     @Override
