@@ -51,8 +51,6 @@ public class User implements Serializable {
     @Basic(optional = false)
     @Column(name = "provider_id")
     private String providerId;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId", fetch = FetchType.LAZY)
-    private List<Artist> artistList;
     @JoinColumn(name = "typeId", referencedColumnName = "typeId")
     @ManyToOne(optional = false)
     private UserType typeId;
@@ -119,14 +117,6 @@ public class User implements Serializable {
 
     public void setProviderId(String providerId) {
         this.providerId = providerId;
-    }
-
-    public List<Artist> getArtistList() {
-        return artistList;
-    }
-
-    public void setArtistList(List<Artist> artistList) {
-        this.artistList = artistList;
     }
 
     public UserType getTypeId() {

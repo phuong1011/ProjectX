@@ -29,9 +29,6 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "category")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Category.findAll", query = "SELECT c FROM Category c")})
 public class Category implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -51,7 +48,7 @@ public class Category implements Serializable {
     @Basic(optional = false)
     @Column(name = "image_path")
     private String image_path;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "categoryId", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "category", fetch = FetchType.LAZY)
     private List<Track> trackList;
 
     public Category() {

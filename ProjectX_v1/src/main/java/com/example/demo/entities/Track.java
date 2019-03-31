@@ -31,9 +31,6 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "track")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Track.findAll", query = "SELECT t FROM Track t")})
 public class Track implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -62,22 +59,15 @@ public class Track implements Serializable {
     @Basic(optional = false)
     @Column(name = "userUploadId")
     private String userUploadId;
-    @JoinTable(name = "playlist_track", joinColumns = {
-        @JoinColumn(name = "trackId", referencedColumnName = "trackId")}, inverseJoinColumns = {
-        @JoinColumn(name = "playlistId", referencedColumnName = "playlistId")})
-    @ManyToMany(fetch = FetchType.LAZY)
-    private List<Playlist> playlistList;
-    @JoinTable(name = "artist_track", joinColumns = {
-        @JoinColumn(name = "trackId", referencedColumnName = "trackId")}, inverseJoinColumns = {
-        @JoinColumn(name = "artistId", referencedColumnName = "artistId")})
-    @ManyToMany(fetch = FetchType.LAZY)
-    private List<Artist> artistList;
     @JoinColumn(name = "categoryId", referencedColumnName = "categoryId")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private Category categoryId;
+    private Category category;
     @JoinColumn(name = "albumId", referencedColumnName = "albumId")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private Album albumId;
+    private Album album;
+    @JoinColumn(name = "playlistId", referencedColumnName = "playlistId")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Playlist playlist;
 
     public Track() {
     }
@@ -124,7 +114,31 @@ public class Track implements Serializable {
         return audioPath;
     }
 
-    public void setAudioPath(String audioPath) {
+    public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
+	public Album getAlbum() {
+		return album;
+	}
+
+	public void setAlbum(Album album) {
+		this.album = album;
+	}
+
+	public Playlist getPlaylist() {
+		return playlist;
+	}
+
+	public void setPlaylist(Playlist playlist) {
+		this.playlist = playlist;
+	}
+
+	public void setAudioPath(String audioPath) {
         this.audioPath = audioPath;
     }
 
@@ -150,40 +164,6 @@ public class Track implements Serializable {
 
     public void setUserUploadId(String userUploadId) {
         this.userUploadId = userUploadId;
-    }
-
-    @XmlTransient
-    public List<Playlist> getPlaylistList() {
-        return playlistList;
-    }
-
-    public void setPlaylistList(List<Playlist> playlistList) {
-        this.playlistList = playlistList;
-    }
-
-    @XmlTransient
-    public List<Artist> getArtistList() {
-        return artistList;
-    }
-
-    public void setArtistList(List<Artist> artistList) {
-        this.artistList = artistList;
-    }
-
-    public Category getCategoryId() {
-        return categoryId;
-    }
-
-    public void setCategoryId(Category categoryId) {
-        this.categoryId = categoryId;
-    }
-
-    public Album getAlbumId() {
-        return albumId;
-    }
-
-    public void setAlbumId(Album albumId) {
-        this.albumId = albumId;
     }
 
     @Override

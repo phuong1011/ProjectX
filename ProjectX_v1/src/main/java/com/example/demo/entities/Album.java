@@ -16,7 +16,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -33,9 +35,6 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "album")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Album.findAll", query = "SELECT a FROM Album a")})
 public class Album implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -52,15 +51,13 @@ public class Album implements Serializable {
     @Column(name = "imagePath")
     private String imagePath;
     @Basic(optional = false)
-    @Column(name = "artistId")
-    private int artistId;
-    @Basic(optional = false)
     @Column(name = "releaseDate")
     @Temporal(TemporalType.DATE)
     private Date releaseDate;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "album", fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name="artist_id")
     private Artist artist;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "albumId", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "album", fetch = FetchType.LAZY)
     private List<Track> trackList;
 
     public Album() {
@@ -70,11 +67,10 @@ public class Album implements Serializable {
         this.albumId = albumId;
     }
 
-    public Album(Integer albumId, String albumName, String imagePath, int artistId, Date releaseDate) {
+    public Album(Integer albumId, String albumName, String imagePath, Date releaseDate) {
         this.albumId = albumId;
         this.albumName = albumName;
         this.imagePath = imagePath;
-        this.artistId = artistId;
         this.releaseDate = releaseDate;
     }
 
@@ -100,14 +96,6 @@ public class Album implements Serializable {
 
     public void setImagePath(String imagePath) {
         this.imagePath = imagePath;
-    }
-
-    public int getArtistId() {
-        return artistId;
-    }
-
-    public void setArtistId(int artistId) {
-        this.artistId = artistId;
     }
 
     public Date getReleaseDate() {

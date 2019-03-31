@@ -25,15 +25,14 @@ import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  *
  * @author Leopold
  */
 @Entity
 @Table(name = "artist")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Artist.findAll", query = "SELECT a FROM Artist a")})
 public class Artist implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -58,14 +57,10 @@ public class Artist implements Serializable {
     @Lob
     @Column(name = "background_path")
     private String backgroundPath;
-    @ManyToMany(mappedBy = "artistList", fetch = FetchType.LAZY)
-    private List<Track> trackList;
-    @JoinColumn(name = "userId", referencedColumnName = "userId")
+    @JoinColumn(name = "userId", referencedColumnName = "userId",columnDefinition="varchar(50)")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JsonIgnore
     private User userId;
-    @JoinColumn(name = "artistId", referencedColumnName = "artistId", insertable = false, updatable = false)
-    @OneToOne(optional = false, fetch = FetchType.LAZY)
-    private Album album;
 
     public Artist() {
     }
@@ -122,29 +117,12 @@ public class Artist implements Serializable {
         this.backgroundPath = backgroundPath;
     }
 
-    @XmlTransient
-    public List<Track> getTrackList() {
-        return trackList;
-    }
-
-    public void setTrackList(List<Track> trackList) {
-        this.trackList = trackList;
-    }
-
     public User getUserId() {
         return userId;
     }
 
     public void setUserId(User userId) {
         this.userId = userId;
-    }
-
-    public Album getAlbum() {
-        return album;
-    }
-
-    public void setAlbum(Album album) {
-        this.album = album;
     }
 
     @Override

@@ -7,7 +7,9 @@ package com.example.demo.entities;
 
 import java.io.Serializable;
 import java.util.List;
+
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -15,12 +17,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
-import javax.persistence.ManyToMany;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -28,9 +26,6 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "playlist")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Playlist.findAll", query = "SELECT p FROM Playlist p")})
 public class Playlist implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -49,7 +44,9 @@ public class Playlist implements Serializable {
     @Basic(optional = false)
     @Column(name = "userId")
     private String userId;
-    @ManyToMany(mappedBy = "playlistList", fetch = FetchType.LAZY)
+    @Column(name = "type")
+    private int type;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "playlist", fetch = FetchType.LAZY)
     private List<Track> trackList;
 
     public Playlist() {
@@ -97,17 +94,18 @@ public class Playlist implements Serializable {
     public void setUserId(String userId) {
         this.userId = userId;
     }
+    
+    
 
-    @XmlTransient
-    public List<Track> getTrackList() {
-        return trackList;
-    }
+    public int getType() {
+		return type;
+	}
 
-    public void setTrackList(List<Track> trackList) {
-        this.trackList = trackList;
-    }
+	public void setType(int type) {
+		this.type = type;
+	}
 
-    @Override
+	@Override
     public int hashCode() {
         int hash = 0;
         hash += (playlistId != null ? playlistId.hashCode() : 0);
