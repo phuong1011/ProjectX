@@ -14,4 +14,6 @@ public interface PlaylistRepository extends JpaRepository<Playlist, String>{
 	
 	@Query("SELECT u FROM Playlist u WHERE u.category.categoryId = ?1")
 	List<Playlist> findByCategoryId(int cateId);
+	
+	List<Playlist> findByType(int type);
 }

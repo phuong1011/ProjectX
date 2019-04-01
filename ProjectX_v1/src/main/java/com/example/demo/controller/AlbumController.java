@@ -60,6 +60,7 @@ public class AlbumController {
         return new ResponseEntity<List<Album>>(list, HttpStatus.OK);
     }
 	
+	//Lay ra 10 random album
 	@RequestMapping(value = "/album/random-ten", method = RequestMethod.GET)
     public ResponseEntity<List<Album>> listRandomTen() {
 		Random rand = new Random();
