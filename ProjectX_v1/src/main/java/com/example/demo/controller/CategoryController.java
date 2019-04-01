@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -27,7 +28,7 @@ public class CategoryController {
 		this.categoryService = categoryService;
 	}
 	
-	@RequestMapping(value = "/categories", method = RequestMethod.GET)
+	@RequestMapping(value = "/category", method = RequestMethod.GET)
 	@ResponseBody
     public ResponseEntity<List<Category>> listAll() {
 		List<Category> list = new ArrayList<>();
@@ -41,6 +42,36 @@ public class CategoryController {
             return new ResponseEntity(null,HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<List<Category>>(list, HttpStatus.OK);
+    }
+	
+	@RequestMapping(value = "/category", method = RequestMethod.POST)
+	@ResponseBody
+    public void addNew(@RequestBody Category category) {
+		try {
+			categoryService.addNew(category);
+		} catch (Exception e) {
+			logger.info(e.getMessage());
+		}
+    }
+	
+	@RequestMapping(value = "/category", method = RequestMethod.PUT)
+	@ResponseBody
+    public void update(Category category) {
+		try {
+			categoryService.update(category);
+		} catch (Exception e) {
+			logger.info(e.getMessage());
+		}
+    }
+	
+	@RequestMapping(value = "/category", method = RequestMethod.DELETE)
+	@ResponseBody
+    public void delete(int id) {
+		try {
+			categoryService.delete(id);
+		} catch (Exception e) {
+			logger.info(e.getMessage());
+		}
     }
 	
 	
