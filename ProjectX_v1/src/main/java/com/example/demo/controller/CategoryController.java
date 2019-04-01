@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -56,7 +57,7 @@ public class CategoryController {
 	
 	@RequestMapping(value = "/category", method = RequestMethod.PUT)
 	@ResponseBody
-    public void update(Category category) {
+    public void update(@RequestBody Category category) {
 		try {
 			categoryService.update(category);
 		} catch (Exception e) {
@@ -64,9 +65,9 @@ public class CategoryController {
 		}
     }
 	
-	@RequestMapping(value = "/category", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/category/{id}", method = RequestMethod.DELETE)
 	@ResponseBody
-    public void delete(int id) {
+    public void delete(@PathVariable Integer id) {
 		try {
 			categoryService.delete(id);
 		} catch (Exception e) {

@@ -33,13 +33,18 @@ public class CategoryServiceImpl implements CategoryService{
 	@Override
 	public void update(Category category) {
 		if(category!=null) {
-			categoryRepository.save(category);
+			Category newCate = categoryRepository.findByCategoryId(category.getCategoryId());
+			newCate.setCategoryName(category.getCategoryName());
+			newCate.setDetail(category.getDetail());
+			newCate.setImage_path(category.getImage_path());
+			categoryRepository.save(newCate);
 		}
 	}
 
 	@Override
-	public void delete(int id) {
-		categoryRepository.deleteById(id);
+	public void delete(Integer id) {
+		Category cate = categoryRepository.findByCategoryId(id);
+		categoryRepository.delete(cate);
 	}
 	
 }

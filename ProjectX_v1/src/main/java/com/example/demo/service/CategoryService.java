@@ -8,5 +8,5 @@ public interface CategoryService {
 	public List<Category> getAll();
 	public void addNew(Category category);
 	public void update(Category category);
-	public void delete(int id);
+	public void delete(Integer id);
 }
