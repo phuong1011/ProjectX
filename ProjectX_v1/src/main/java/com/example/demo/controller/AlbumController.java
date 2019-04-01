@@ -1,6 +1,8 @@
 package com.example.demo.controller;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -57,4 +59,37 @@ public class AlbumController {
         }
         return new ResponseEntity<List<Album>>(list, HttpStatus.OK);
     }
+	
+	@RequestMapping(value = "/album/random-ten", method = RequestMethod.GET)
+    public ResponseEntity<List<Album>> listRandomTen() {
+		Random rand = new Random();
+		List<Album> list = new ArrayList<Album>();
+			List<Album> allList = albumService.getAll();
+			if(allList.size()<=10) {
+				list = allList;
+			}else {
+				do {
+					int randomIndex = rand.nextInt(allList.size());
+			        Album randomElement = allList.get(randomIndex);
+			        if(list == null || (list != null && list.isEmpty())){
+		        		list.add(randomElement);
+		        	}else {
+		        		boolean nothave = true;
+		        		for(int j = 0;j<list.size();j++)
+				        {
+		        			if(randomElement.getAlbumId()==list.get(j).getAlbumId()) {
+		        				nothave = false;
+				        	}
+				        }
+		        		if(nothave) {
+		        			list.add(randomElement);
+		        		}
+		        	}
+				} while(list.size() < 10);
+			}
+			if (list.isEmpty()) {
+	            return new ResponseEntity(null,HttpStatus.NO_CONTENT);
+	        }
+	        return new ResponseEntity<List<Album>>(list, HttpStatus.OK);	
+	}
 }
