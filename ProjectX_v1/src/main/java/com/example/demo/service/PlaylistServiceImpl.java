@@ -53,5 +53,10 @@ public class PlaylistServiceImpl implements PlaylistService{
 	public List<Playlist> getAllPlaylistByCategoryId(int cateId) {
 		return playlistRepository.findByCategoryId(cateId);
 	}
+	
+	@Override
+	public List<Playlist> getAllPlaylistByType(int type) {
+		return playlistRepository.findByType(type);
+	}
 
 }

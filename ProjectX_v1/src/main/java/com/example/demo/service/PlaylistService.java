@@ -9,4 +9,5 @@ public interface PlaylistService {
 	public List<Playlist> getAllPlaylistByUserId(String userId);
 	public List<Playlist> getAllPlaylistByCategoryId(int cateId);
 	public List<Playlist> getAllFollowPlaylistByUserId(String userId);
+	public List<Playlist> getAllPlaylistByType(int type);
 }

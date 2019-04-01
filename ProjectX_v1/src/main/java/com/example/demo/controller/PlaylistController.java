@@ -96,4 +96,22 @@ public class PlaylistController {
         
     }
 	
+	//Lay ra cac playlist duoc tao ra boi admin
+	@RequestMapping(value = "/playlist/admin", method = RequestMethod.GET)
+    public ResponseEntity<List<Playlist>> playlistByAdmin() {
+		List<Playlist> list = new ArrayList<>();
+		try {
+			list = playlistService.getAllPlaylistByType(0);
+		} catch (Exception e) {
+			System.out.println(e);
+			logger.info(e.getMessage());
+		}
+        
+        if (list.isEmpty()) {
+            return new ResponseEntity(null,HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<List<Playlist>>(list, HttpStatus.OK);
+        
+    }
+	
 }
