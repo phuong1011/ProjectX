@@ -30,9 +30,8 @@ public class TrackServiceImpl implements TrackService{
 	}
 
 	@Override
-	public Track FindByName(String name) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Track> FindByName(String name) {
+		return trackRepository.findBytrackNameContaining(name);
 	}
 	
 	
