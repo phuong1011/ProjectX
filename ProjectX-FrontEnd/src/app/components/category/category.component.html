@@ -1,0 +1,54 @@
+<div class="panel">
+  <div class="panel-heading">
+    <h3 class="panel-title">Category list</h3>
+  </div>
+  <div class="panel-body">
+    <div class="float-right">
+      <button type="button" class="btn btn-success btn-toastr" data-toggle="modal" title="Add" data-target="#myModal"><span class="glyphicon glyphicon-plus"></span></button>
+    </div>
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Details</th>
+          <th>Image_path</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cate of service.list">
+          <td (click)="populateForm(cate)">{{cate.categoryId}}</td>
+          <td (click)="populateForm(cate)">{{cate.categoryName}}</td>
+          <td (click)="populateForm(cate)">{{cate.detail}}</td>
+          <td (click)="populateForm(cate)">{{cate.image_path}}</td>
+          <td><button type="button" class="btn btn-xs btn-warning" title="edit" data-toggle="modal" data-target="#myModal">
+            <span class="glyphicon glyphicon-pencil"></span>
+          </button>
+          <button class="btn btn-xs btn-danger" type="button" (click)="onDelete(cate.categoryId)" title="delete">
+            <span class="glyphicon glyphicon-remove"></span>
+          </button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Edit Category</h4>
+      </div>
+      <div class="modal-body">
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
