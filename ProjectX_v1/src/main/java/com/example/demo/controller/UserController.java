@@ -48,7 +48,17 @@ public class UserController {
 		return userService.findByEmail(email);
     }
 	
+	@RequestMapping(value = "/user", method = RequestMethod.PUT)
+	@ResponseBody
+    public User update(@RequestBody User user) {
+		return userService.update(user);
+    }
 	
+	@RequestMapping(value = "/user/{id}", method = RequestMethod.DELETE)
+	@ResponseBody
+    public void delete(@PathVariable String id) {
+		userService.delete(id);
+    }
 	
 	
 }
