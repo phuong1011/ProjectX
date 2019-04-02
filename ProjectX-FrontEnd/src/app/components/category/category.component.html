@@ -4,7 +4,7 @@
   </div>
   <div class="panel-body">
     <div class="float-right">
-      <button type="button" class="btn btn-success btn-toastr" data-toggle="modal" title="Add" data-target="#myModal"><span class="glyphicon glyphicon-plus"></span></button>
+      <button type="button" class="btn btn-success btn-toastr" data-toggle="modal" title="Add" data-target="#addModal"><span class="glyphicon glyphicon-plus"></span></button>
     </div>
     <table class="table table-bordered table-hover">
       <thead>
@@ -18,11 +18,11 @@
       </thead>
       <tbody>
         <tr *ngFor="let cate of service.list">
-          <td (click)="populateForm(cate)">{{cate.categoryId}}</td>
-          <td (click)="populateForm(cate)">{{cate.categoryName}}</td>
-          <td (click)="populateForm(cate)">{{cate.detail}}</td>
-          <td (click)="populateForm(cate)">{{cate.image_path}}</td>
-          <td><button type="button" class="btn btn-xs btn-warning" title="edit" data-toggle="modal" data-target="#myModal">
+          <td>{{cate.categoryId}}</td>
+          <td>{{cate.categoryName}}</td>
+          <td>{{cate.detail}}</td>
+          <td>{{cate.image_path}}</td>
+          <td><button type="button" class="btn btn-xs btn-warning" title="edit" data-toggle="modal" data-target="#myModal"  (click)="populateForm(cate)">
             <span class="glyphicon glyphicon-pencil"></span>
           </button>
           <button class="btn btn-xs btn-danger" type="button" (click)="onDelete(cate.categoryId)" title="delete">
@@ -38,16 +38,60 @@
 
     <!-- Modal content-->
     <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Edit Category</h4>
-      </div>
-      <div class="modal-body">
-        <form
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
+      <form #form="ngForm" id="updateForm" (submit)="onSubmit($event)" autocomplete="off">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Update Category</h4>
+          </div>
+          <div class="modal-body">
+            
+              <label for="name">Name: <span class="required">*</span></label>
+              <input type="text" id="nameUpdate" required [(ngModel)]="updateCate.categoryName" name="name" class="form-control"
+                #name="ngModel">
+              <label for="name">Detail: <span class="required">*</span></label>
+              <input type="text" id="nameDetail" required [(ngModel)]="updateCate.detail" name="detail" class="form-control"
+                #detail="ngModel">
+              <label for="name">image: <span class="required">*</span></label>
+              <input type="file" id="nameImage" required accept="image/*" (change)="selectFile($event)">
+            
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-success" type="submit" data-dismiss="modal">Save</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal" #btnClose>Close</button>
+          </div>
+        </form>
+    </div>
+
+  </div>
+</div>
+
+<div id="addModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <form #form="ngForm" id="addForm" (submit)="onSubmit($event)" autocomplete="off">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">New Category</h4>
+        </div>
+        <div class="modal-body">
+          
+            <label for="name">Name: <span class="required">*</span></label>
+            <input type="text" id="name" required [(ngModel)]="newCate.categoryName" name="name" class="form-control"
+              #name="ngModel">
+            <label for="name">Detail: <span class="required">*</span></label>
+            <input type="text" id="detail" required [(ngModel)]="newCate.detail" name="detail" class="form-control"
+              #detail="ngModel">
+            <label for="name">image: <span class="required">*</span></label>
+            <input type="file" id="image" required name="image" accept="image/*" (change)="selectFile($event)">
+          
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-success" type="submit"  data-dismiss="modal">Save</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal" #btnClose>Close</button>
+        </div>
+      </form>
     </div>
 
   </div>

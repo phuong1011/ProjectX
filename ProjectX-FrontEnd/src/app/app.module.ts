@@ -7,7 +7,6 @@ import { NabbarComponent } from './components/nabbar/nabbar.component';
 import { LoginService } from './services/login.service';
 import { HomeComponent } from './components/home/home.component';
 import { CategoryComponent } from './components/category/category.component';
-import { NewcategoryComponent } from './components/category/new/newcategory/newcategory.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from "@angular/forms";
 import { ToastrModule } from 'ngx-toastr';
@@ -17,8 +16,7 @@ import { ToastrModule } from 'ngx-toastr';
     AppComponent,
     NabbarComponent,
     HomeComponent,
-    CategoryComponent,
-    NewcategoryComponent
+    CategoryComponent
   ],
   imports: [
     BrowserModule,
