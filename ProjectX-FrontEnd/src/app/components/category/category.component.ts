@@ -24,7 +24,7 @@ export class CategoryComponent implements OnInit {
     if (confirm('Are you sure to delete this record?')) {
       this.service.deleteCategory(id).subscribe(res => {
         this.service.refreshList();
-        this.toastr.warning('Deleted successfully', 'EMP. Register');
+        this.toastr.warning('Deleted successfully', 'Category plan');
       });
     }
   }

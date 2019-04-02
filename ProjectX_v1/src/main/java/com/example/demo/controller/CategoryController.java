@@ -19,7 +19,7 @@ import com.example.demo.entities.Category;
 import com.example.demo.service.CategoryService;
 
 @Controller
-@CrossOrigin(origins = { "*" })
+@CrossOrigin(origins = {"*"})
 public class CategoryController {
 
 	private CategoryService categoryService;
