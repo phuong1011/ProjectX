@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entities.Follow;
@@ -50,13 +52,15 @@ public class PlaylistServiceImpl implements PlaylistService{
 	}
 
 	@Override
-	public List<Playlist> getAllPlaylistByCategoryId(int cateId) {
-		return playlistRepository.findByCategoryId(cateId);
+	public List<Playlist> getAllPlaylistByCategoryId(int cateId,int page, int size) {
+		Pageable pageable = PageRequest.of(page, size);
+		return playlistRepository.findByCategoryId(cateId,pageable);
 	}
 	
 	@Override
-	public List<Playlist> getAllPlaylistByType(int type) {
-		return playlistRepository.findByType(type);
+	public List<Playlist> getAllPlaylistByType(int type, int page, int size) {
+		Pageable pageable = PageRequest.of(page, size);
+		return playlistRepository.findByType(type,pageable);
 	}
 
 }

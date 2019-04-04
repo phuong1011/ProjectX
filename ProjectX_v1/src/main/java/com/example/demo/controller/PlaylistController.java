@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.entities.Playlist;
 import com.example.demo.service.PlaylistService;
@@ -80,10 +81,11 @@ public class PlaylistController {
     }
 	
 	@RequestMapping(value = "/playlist/category/{cateId}", method = RequestMethod.GET)
-    public ResponseEntity<List<Playlist>> playlistByUserId(@PathVariable("cateId") int cateId) {
+    public ResponseEntity<List<Playlist>> playlistByUserId(@PathVariable("cateId") int cateId,@RequestParam(value = "page", required = false, defaultValue = "0") int page
+    		, @RequestParam(value = "size", required = false, defaultValue = "10") int size) {
 		List<Playlist> list = new ArrayList<>();
 		try {
-			list = playlistService.getAllPlaylistByCategoryId(cateId);
+			list = playlistService.getAllPlaylistByCategoryId(cateId,page,size);
 		} catch (Exception e) {
 			System.out.println(e);
 			logger.info(e.getMessage());
@@ -98,10 +100,11 @@ public class PlaylistController {
 	
 	//Lay ra cac playlist duoc tao ra boi admin
 	@RequestMapping(value = "/playlist/admin", method = RequestMethod.GET)
-    public ResponseEntity<List<Playlist>> playlistByAdmin() {
+    public ResponseEntity<List<Playlist>> playlistByAdmin(@RequestParam(value = "page", required = false, defaultValue = "0") int page
+    		, @RequestParam(value = "size", required = false, defaultValue = "10") int size) {
 		List<Playlist> list = new ArrayList<>();
 		try {
-			list = playlistService.getAllPlaylistByType(0);
+			list = playlistService.getAllPlaylistByType(0, page, size);
 		} catch (Exception e) {
 			System.out.println(e);
 			logger.info(e.getMessage());

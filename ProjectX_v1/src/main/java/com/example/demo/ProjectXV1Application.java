@@ -10,6 +10,8 @@ public class ProjectXV1Application {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProjectXV1Application.class, args);
+		System.setProperty("tomcat.util.http.parser.HttpParser.requestTargetAllow", "{}");
+		System.out.println("hihi");
 	}
 
 }

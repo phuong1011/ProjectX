@@ -7,7 +7,7 @@ import com.example.demo.entities.Playlist;
 public interface PlaylistService {
 	public List<Playlist> getAll();
 	public List<Playlist> getAllPlaylistByUserId(String userId);
-	public List<Playlist> getAllPlaylistByCategoryId(int cateId);
+	public List<Playlist> getAllPlaylistByCategoryId(int cateId,int page, int size);
 	public List<Playlist> getAllFollowPlaylistByUserId(String userId);
-	public List<Playlist> getAllPlaylistByType(int type);
+	public List<Playlist> getAllPlaylistByType(int type,int page, int size);
 }
