@@ -23,4 +23,9 @@ public class ArtistServiceImpl implements ArtistService {
 		return artistRepository.findByartistNameContaining(name);
 	}
 
+	@Override
+	public Artist findById(int id) {
+		return artistRepository.getOne(id);
+	}
+
 }

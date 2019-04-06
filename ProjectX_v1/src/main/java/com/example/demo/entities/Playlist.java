@@ -17,12 +17,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  *
@@ -54,6 +53,10 @@ public class Playlist implements Serializable {
     @JoinColumn(name="category_id")
     private Category category;
 
+    @ManyToMany
+    @JoinTable(name="track_playlist", joinColumns= @JoinColumn(name = "playlist_id"), inverseJoinColumns=@JoinColumn(name = "track_id"))
+    private List<Track> tracks;
+    
     public Playlist() {
     }
 
@@ -142,5 +145,13 @@ public class Playlist implements Serializable {
     public String toString() {
         return "cc2.Playlist[ playlistId=" + playlistId + " ]";
     }
+
+	public List<Track> getTracks() {
+		return tracks;
+	}
+
+	public void setTracks(List<Track> tracks) {
+		this.tracks = tracks;
+	}
     
 }

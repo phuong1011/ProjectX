@@ -62,4 +62,9 @@ public class AlbumServiceImpl implements AlbumService {
 		return albumRepository.findByCategoryId(cateId);
 	}
 
+	@Override
+	public Album getAlbumById(int id) {
+		return albumRepository.getOne(id);
+	}
+
 }

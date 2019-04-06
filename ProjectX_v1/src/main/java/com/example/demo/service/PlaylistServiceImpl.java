@@ -1,7 +1,9 @@
 package com.example.demo.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -61,6 +63,28 @@ public class PlaylistServiceImpl implements PlaylistService{
 	public List<Playlist> getAllPlaylistByType(int type, int page, int size) {
 		Pageable pageable = PageRequest.of(page, size);
 		return playlistRepository.findByType(type,pageable);
+	}
+
+	@Override
+	public Playlist findById(Integer id) {
+		return playlistRepository.findById(id).orElse(null);
+	}
+
+	@Override
+	public List<Map<String, Object>> getPlaylistCount(int page, int size) {
+		Pageable pageable = PageRequest.of(page, size);
+		List<Map<String, Object>> lst = new ArrayList<Map<String,Object>>();
+		List<Playlist> lstPlaylist = playlistRepository.findAll(pageable).getContent();
+		
+		for (Playlist playlist : lstPlaylist) {
+			int count = playlist.getTracks().size();
+			playlist.setTracks(null);
+			Map<String, Object> mapsMap = new HashMap();
+			mapsMap.put("playlist", playlist);
+			mapsMap.put("count", count);
+			lst.add(mapsMap);
+		}
+		return lst;
 	}
 
 }

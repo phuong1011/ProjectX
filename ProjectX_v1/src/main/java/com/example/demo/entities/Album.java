@@ -27,6 +27,7 @@ import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlTransient;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
  *
@@ -34,6 +35,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  */
 @Entity
 @Table(name = "album")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Album implements Serializable {
 
     private static final long serialVersionUID = 1L;

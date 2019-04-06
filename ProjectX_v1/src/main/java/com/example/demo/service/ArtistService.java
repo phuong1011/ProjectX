@@ -6,4 +6,5 @@ import com.example.demo.entities.Artist;
 
 public interface ArtistService {
 	List<Artist> FindByName(String name);
+	Artist findById(int id);
 }

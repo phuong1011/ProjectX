@@ -1,7 +1,9 @@
 package com.example.demo.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.entities.Playlist;
 import com.example.demo.service.PlaylistService;
@@ -114,6 +117,20 @@ public class PlaylistController {
             return new ResponseEntity(null,HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<List<Playlist>>(list, HttpStatus.OK);
+        
+    }
+	
+	@RequestMapping(value = "/playlist/count", method = RequestMethod.GET)
+	@ResponseBody
+    public ResponseEntity<List<Map<String, Object>>> playlistWithCount(@RequestParam(value = "page", required = false, defaultValue = "0") int page
+    		, @RequestParam(value = "size", required = false, defaultValue = "10") int size) {
+		List<Map<String, Object>> lst = new ArrayList<Map<String,Object>>();
+		lst = playlistService.getPlaylistCount(page, size);
+        
+        if (lst.isEmpty()) {
+            return new ResponseEntity(null,HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(lst, HttpStatus.OK);
         
     }
 	

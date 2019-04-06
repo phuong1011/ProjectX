@@ -5,7 +5,9 @@ import java.util.List;
 import com.example.demo.entities.Track;
 
 public interface TrackService {
-	public List<Track> getAll();
-	public Track getOneById(Integer id);
-	public List<Track> FindByName(String name);
+	List<Track> getAll();
+
+	Track getOneById(Integer id);
+
+	List<Track> FindByName(String name);
 }

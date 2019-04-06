@@ -56,6 +56,10 @@ public class Track implements Serializable {
     @JoinColumn(name = "albumId", referencedColumnName = "albumId")
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Album album;
+    
+//    @ManyToMany
+//    @JoinTable(name="track_playlist", joinColumns= @JoinColumn(name = "track_id"), inverseJoinColumns=@JoinColumn(name = "playlist_id"))
+//    private List<Playlist> playlists;
 
     public Track() {
     }
@@ -162,5 +166,13 @@ public class Track implements Serializable {
     public String toString() {
         return "cc2.Track[ trackId=" + trackId + " ]";
     }
+
+//	public List<Playlist> getPlaylists() {
+//		return playlists;
+//	}
+//
+//	public void setPlaylists(List<Playlist> playlists) {
+//		this.playlists = playlists;
+//	}
     
 }

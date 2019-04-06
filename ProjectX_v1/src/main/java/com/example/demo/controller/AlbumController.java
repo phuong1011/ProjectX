@@ -93,4 +93,11 @@ public class AlbumController {
 	        }
 	        return new ResponseEntity<List<Album>>(list, HttpStatus.OK);	
 	}
+	
+	@RequestMapping(value = "/album/{id}", method = RequestMethod.GET)
+	@ResponseBody
+    public ResponseEntity<Album> findById(@PathVariable("id") int id) {
+        Album list = albumService.getAlbumById(id);
+        return new ResponseEntity<>(list, HttpStatus.OK);
+    }
 }

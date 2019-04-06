@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.example.demo.entities.Track;
 import com.example.demo.repository.TrackRepository;
 
-@Service("trackService")
+@Service
 public class TrackServiceImpl implements TrackService{
 
 	private TrackRepository trackRepository;
