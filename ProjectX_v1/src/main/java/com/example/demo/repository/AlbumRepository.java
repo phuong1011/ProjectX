@@ -17,4 +17,5 @@ public interface AlbumRepository extends JpaRepository<Album, Integer> {
 	
 	@Query("SELECT u FROM Album u WHERE u.category.categoryId = ?1")
 	List<Album> findByCategoryId(int categoryId);
+	
 }

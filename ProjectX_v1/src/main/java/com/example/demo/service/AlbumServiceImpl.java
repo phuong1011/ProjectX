@@ -67,4 +67,11 @@ public class AlbumServiceImpl implements AlbumService {
 		return albumRepository.getOne(id);
 	}
 
+	@Override
+	public List<Album> getAllByUserId(int artistId) {
+		return albumRepository.findByArtistId(artistId);
+	}
+
+	
+	
 }
