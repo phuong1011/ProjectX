@@ -61,7 +61,6 @@ public class Album implements Serializable {
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name="artist_id")
     private Artist artist;
-    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "album", fetch = FetchType.EAGER)
     private List<Track> trackList;
 

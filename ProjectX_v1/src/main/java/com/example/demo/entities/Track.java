@@ -19,6 +19,8 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  *
  * @author Leopold
@@ -53,6 +55,7 @@ public class Track implements Serializable {
     @Basic(optional = false)
     @Column(name = "userUploadId")
     private String userUploadId;
+    @JsonIgnore
     @JoinColumn(name = "albumId", referencedColumnName = "albumId")
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Album album;
