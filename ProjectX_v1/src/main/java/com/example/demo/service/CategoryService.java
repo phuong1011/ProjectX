@@ -7,6 +7,6 @@ import com.example.demo.entities.Category;
 public interface CategoryService {
 	public List<Category> getAll();
 	public void addNew(Category category);
-	public void update(Category category);
+	public Category update(Category category);
 	public void delete(Integer id);
 }

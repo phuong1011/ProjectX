@@ -49,32 +49,36 @@ public class CategoryController {
 	
 	@RequestMapping(value = "/category", method = RequestMethod.POST)
 	@ResponseBody
-    public void addNew(@RequestBody Category category) {
+    public ResponseEntity<Void> addNew(@RequestBody Category category) {
 		try {
 			categoryService.addNew(category);
 		} catch (Exception e) {
 			logger.info(e.getMessage());
 		}
+		return new ResponseEntity<Void>(HttpStatus.CREATED);
     }
 	
 	@RequestMapping(value = "/category", method = RequestMethod.PUT)
 	@ResponseBody
-    public void update(@RequestBody Category category) {
+    public ResponseEntity<Category> update(@RequestBody Category category) {
+		Category cate = new Category();
 		try {
-			categoryService.update(category);
+			cate = categoryService.update(category);
 		} catch (Exception e) {
 			logger.info(e.getMessage());
 		}
+		return new ResponseEntity<Category>(cate, HttpStatus.OK);
     }
 	
 	@RequestMapping(value = "/category/{id}", method = RequestMethod.DELETE)
 	@ResponseBody
-    public void delete(@PathVariable Integer id) {
+    public ResponseEntity<Category> delete(@PathVariable Integer id) {
 		try {
 			categoryService.delete(id);
 		} catch (Exception e) {
 			logger.info(e.getMessage());
 		}
+		return new ResponseEntity<Category>(HttpStatus.NO_CONTENT);
     }
 	
 	

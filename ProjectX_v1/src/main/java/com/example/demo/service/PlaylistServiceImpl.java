@@ -10,6 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.entities.Category;
 import com.example.demo.entities.Follow;
 import com.example.demo.entities.Playlist;
 import com.example.demo.repository.FollowRepository;
@@ -85,6 +86,35 @@ public class PlaylistServiceImpl implements PlaylistService{
 			lst.add(mapsMap);
 		}
 		return lst;
+	}
+
+	@Override
+	public void addNew(Playlist playList) {
+		if(playList!=null) {
+			playlistRepository.save(playList);
+		}
+	}
+
+	@Override
+	public Playlist update(Playlist playList) {
+		if(playList!=null) {
+			Playlist newPL= playlistRepository.getOne(playList.getPlaylistId());
+			newPL.setPlaylistName(playList.getPlaylistName());
+			newPL.setImagePath(playList.getImagePath());
+			newPL.setType(playList.getType());
+			newPL.setUserId(playList.getUserId());
+			newPL.setCategory(playList.getCategory());
+			newPL.setTracks(playList.getTracks());
+			playlistRepository.save(newPL);
+			return newPL;
+		}
+		return null;
+	}
+
+	@Override
+	public void delete(Integer id) {
+		Playlist playList = playlistRepository.getOne(id);
+		playlistRepository.delete(playList);
 	}
 
 }

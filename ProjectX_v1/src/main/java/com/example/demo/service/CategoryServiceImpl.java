@@ -31,14 +31,16 @@ public class CategoryServiceImpl implements CategoryService{
 	}
 
 	@Override
-	public void update(Category category) {
+	public Category update(Category category) {
 		if(category!=null) {
 			Category newCate = categoryRepository.findByCategoryId(category.getCategoryId());
 			newCate.setCategoryName(category.getCategoryName());
 			newCate.setDetail(category.getDetail());
 			newCate.setImage_path(category.getImage_path());
 			categoryRepository.save(newCate);
+			return newCate;
 		}
+		return null;
 	}
 
 	@Override

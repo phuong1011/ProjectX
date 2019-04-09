@@ -11,11 +11,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.example.demo.entities.Category;
 import com.example.demo.entities.Playlist;
 import com.example.demo.service.PlaylistService;
 
@@ -115,6 +117,40 @@ public class PlaylistController {
         }
         return new ResponseEntity<>(lst, HttpStatus.OK);
         
+    }
+	
+	@RequestMapping(value = "/playlist", method = RequestMethod.POST)
+	@ResponseBody
+    public ResponseEntity<Void> addNew(@RequestBody Playlist playList) {
+		try {
+			playlistService.addNew(playList);
+		} catch (Exception e) {
+			logger.info(e.getMessage());
+		}
+		return new ResponseEntity<Void>(HttpStatus.CREATED);
+    }
+	
+	@RequestMapping(value = "/playlist", method = RequestMethod.PUT)
+	@ResponseBody
+    public ResponseEntity<Playlist> update(@RequestBody Playlist playList) {
+		Playlist playL = new Playlist();
+		try {
+			playL = playlistService.update(playList);
+		} catch (Exception e) {
+			logger.info(e.getMessage());
+		}
+		return new ResponseEntity<Playlist>(playL, HttpStatus.OK);
+    }
+	
+	@RequestMapping(value = "/playlist/{id}", method = RequestMethod.DELETE)
+	@ResponseBody
+    public ResponseEntity<Playlist> delete(@PathVariable Integer id) {
+		try {
+			playlistService.delete(id);
+		} catch (Exception e) {
+			logger.info(e.getMessage());
+		}
+		return new ResponseEntity<Playlist>(HttpStatus.NO_CONTENT);
     }
 	
 }
