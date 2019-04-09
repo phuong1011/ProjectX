@@ -8,7 +8,7 @@ export class album{
         public releaseDate: string,
         public imagePath: string,
         public category: category,
-        public artist: any,
+        public artist: {artistId: number },
         public trackList: track[]
     ){ }
 }

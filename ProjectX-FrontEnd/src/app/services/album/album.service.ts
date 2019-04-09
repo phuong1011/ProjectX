@@ -23,7 +23,7 @@ export class AlbumService {
   }
 
   postCategory(formData : album){
-    return this.http.post(this.url+'/album',formData);
+    return this.http.post(this.url+'album',formData);
   }
 
   putCategory(formData : album){

@@ -6,8 +6,10 @@
 package com.example.demo.entities;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -15,7 +17,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -57,12 +61,12 @@ public class Track implements Serializable {
     private String userUploadId;
     @JsonIgnore
     @JoinColumn(name = "albumId", referencedColumnName = "albumId")
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private Album album;
     
-//    @ManyToMany
-//    @JoinTable(name="track_playlist", joinColumns= @JoinColumn(name = "track_id"), inverseJoinColumns=@JoinColumn(name = "playlist_id"))
-//    private List<Playlist> playlists;
+    @ManyToMany
+    @JoinTable(name="track_artist", joinColumns= @JoinColumn(name = "track_id",nullable = false, updatable = false,insertable = false), inverseJoinColumns=@JoinColumn(name = "artist_id"))
+    private List<Artist> artists;
 
     public Track() {
     }
@@ -170,12 +174,14 @@ public class Track implements Serializable {
         return "cc2.Track[ trackId=" + trackId + " ]";
     }
 
-//	public List<Playlist> getPlaylists() {
-//		return playlists;
-//	}
-//
-//	public void setPlaylists(List<Playlist> playlists) {
-//		this.playlists = playlists;
-//	}
+	public List<Artist> getArtists() {
+		return artists;
+	}
+
+	public void setArtists(List<Artist> artists) {
+		this.artists = artists;
+	}
+    
+    
     
 }

@@ -11,4 +11,5 @@ public interface AlbumService {
 	List<Album> getAllAlbumByCategoryId(int cateId);
 	List<Album> getAllFollowAlbumByUserId(String userId);
 	Album getAlbumById(int id);
+	Album saveAlbum(Album album);
 }

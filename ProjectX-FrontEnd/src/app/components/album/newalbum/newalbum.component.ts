@@ -4,6 +4,8 @@ import { CategoryService } from 'src/app/services/category/category.service';
 import { ToastrService } from 'ngx-toastr';
 import { category } from 'src/app/models/category';
 import { track } from 'src/app/models/track';
+import { AlbumService } from 'src/app/services/album/album.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-newalbum',
@@ -12,21 +14,29 @@ import { track } from 'src/app/models/track';
 })
 export class NewalbumComponent implements OnInit {
 
-  constructor(private categoryService: CategoryService,private toastr: ToastrService) { }
+  constructor(private categoryService: CategoryService,private albumService: AlbumService,private toastr: ToastrService, private router: Router) { }
 
   newAlbum: album;
   track: track;
 
   ngOnInit() {
     this.categoryService.refreshList();
-    this.newAlbum = new album(0,"","","",new category(0,"","",""),"",[]);
-    this.track = new track(0,"","","",0,"","ascascc");
+    this.newAlbum = new album(0,"","","",new category(0,"","",""),{artistId: 1},[]);
+    this.track = new track(0,"","","",0,"","");
   }
 
   addTrack(){
     console.log("begin");
     this.newAlbum.trackList.push(this.track);
-    this.track = new track(0,"","","",0,"","ascascc");
+    this.track = new track(0,"","","",0,"","1");
+  }
+
+  saveAlbum(){
+    console.log(JSON.stringify(this.newAlbum));
+    this.albumService.postCategory(this.newAlbum).subscribe(res => {
+      this.router.navigate(['/album']);
+      this.toastr.success('Inserted successfully', 'Category plan');
+    });
   }
 
   deleteTrack(index){

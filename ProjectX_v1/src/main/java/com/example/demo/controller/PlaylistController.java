@@ -47,6 +47,22 @@ public class PlaylistController {
         return new ResponseEntity<List<Playlist>>(list, HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/playlist/user/{userId}", method = RequestMethod.GET)
+    public ResponseEntity<List<Playlist>> playlistByUserId(@PathVariable("userId") String userId) {
+        List<Playlist> list = new ArrayList<>();
+        try {
+            list = playlistService.getAllPlaylistByUserId(userId);
+        } catch (Exception e) {
+            System.out.println(e);
+            logger.info(e.getMessage());
+        }
+        
+        if (list.isEmpty()) {
+            return new ResponseEntity(null,HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<List<Playlist>>(list, HttpStatus.OK);
+        
+    }
 	
 	//Lay ra tat ca cac playlist cua cac artist ma thang user follow
 	@RequestMapping(value = "/playlist/follow/{userId}", method = RequestMethod.GET)

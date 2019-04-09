@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -111,5 +112,12 @@ public class AlbumController {
     public ResponseEntity<Album> findById(@PathVariable("id") int id) {
         Album list = albumService.getAlbumById(id);
         return new ResponseEntity<>(list, HttpStatus.OK);
+    }
+	
+	@RequestMapping(value = "/album", method = RequestMethod.POST)
+	@ResponseBody
+    public ResponseEntity<Album> saveAlbum(@RequestBody Album album) {
+        Album album1 = albumService.saveAlbum(album);
+        return new ResponseEntity<>(album1, HttpStatus.OK);
     }
 }
