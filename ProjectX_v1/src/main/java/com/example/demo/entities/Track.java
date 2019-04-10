@@ -59,14 +59,10 @@ public class Track implements Serializable {
     @Basic(optional = false)
     @Column(name = "userUploadId")
     private String userUploadId;
-    @JsonIgnore
-    @JoinColumn(name = "albumId", referencedColumnName = "albumId")
-    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    private Album album;
     
-    @ManyToMany
-    @JoinTable(name="track_artist", joinColumns= @JoinColumn(name = "track_id",nullable = false, updatable = false,insertable = false), inverseJoinColumns=@JoinColumn(name = "artist_id"))
-    private List<Artist> artists;
+    @JoinColumn(name = "albumId", referencedColumnName = "albumId")
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    private Album album;
 
     public Track() {
     }
@@ -173,15 +169,4 @@ public class Track implements Serializable {
     public String toString() {
         return "cc2.Track[ trackId=" + trackId + " ]";
     }
-
-	public List<Artist> getArtists() {
-		return artists;
-	}
-
-	public void setArtists(List<Artist> artists) {
-		this.artists = artists;
-	}
-    
-    
-    
 }
