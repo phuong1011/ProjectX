@@ -12,6 +12,7 @@ import { FormsModule } from "@angular/forms";
 import { ToastrModule } from 'ngx-toastr';
 import { AlbumComponent } from './components/album/album.component';
 import { NewalbumComponent } from './components/album/newalbum/newalbum.component';
+import { EditalbumComponent } from './components/album/editalbum/editalbum.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { NewalbumComponent } from './components/album/newalbum/newalbum.componen
     HomeComponent,
     CategoryComponent,
     AlbumComponent,
-    NewalbumComponent
+    NewalbumComponent,
+    EditalbumComponent
   ],
   imports: [
     BrowserModule,
