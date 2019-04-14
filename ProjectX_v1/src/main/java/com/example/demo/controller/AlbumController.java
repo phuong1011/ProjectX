@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import com.example.demo.dto.AlbumDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,60 +32,60 @@ public class AlbumController {
 
 	@RequestMapping(value = "/album/artist/{artistId}", method = RequestMethod.GET)
 	@ResponseBody
-    public ResponseEntity<List<Album>> listAllForUser(@PathVariable("artistId") int id) {
-        List<Album> list = albumService.getAllByUserId(id);
+    public ResponseEntity<List<AlbumDto>> listAllForUser(@PathVariable("artistId") int id) {
+        List<AlbumDto> list = albumService.getAllByUserId(id);
         if (list.isEmpty()) {
             return new ResponseEntity(null,HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<List<Album>>(list, HttpStatus.OK);
+        return new ResponseEntity<List<AlbumDto>>(list, HttpStatus.OK);
     }
 	
 
 	//Lay ra tat ca cac album duoc tai len moi nhat
 	@RequestMapping(value = "/album/date", method = RequestMethod.GET)
 	@ResponseBody
-    public ResponseEntity<List<Album>> listAll() {
-        List<Album> list = albumService.getAllOrderByReleaseDate();
+    public ResponseEntity<List<AlbumDto>> listAll() {
+        List<AlbumDto> list = albumService.getAllOrderByReleaseDate();
         if (list.isEmpty()) {
             return new ResponseEntity(null,HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<List<Album>>(list, HttpStatus.OK);
+        return new ResponseEntity<List<AlbumDto>>(list, HttpStatus.OK);
     }
 	
 	//Lay ra tat ca nhung album cua thang artist ma thang user follow
 	@RequestMapping(value = "/album/follow/{userId}", method = RequestMethod.GET)
 	@ResponseBody
-    public ResponseEntity<List<Album>> findAllFollowAlbum(@PathVariable("userId") String id) {
-        List<Album> list = albumService.getAllFollowAlbumByUserId(id);
+    public ResponseEntity<List<AlbumDto>> findAllFollowAlbum(@PathVariable("userId") String id) {
+        List<AlbumDto> list = albumService.getAllFollowAlbumByUserId(id);
         if (list.isEmpty()) {
             return new ResponseEntity(null,HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<List<Album>>(list, HttpStatus.OK);
+        return new ResponseEntity<List<AlbumDto>>(list, HttpStatus.OK);
     }
 	
 	//Lay ra tat ca nhung album moi nhat theo 1 category
 	@RequestMapping(value = "/album/category/{cateId}", method = RequestMethod.GET)
 	@ResponseBody
-    public ResponseEntity<List<Album>> findAllAlbumByCategory(@PathVariable("cateId") int categoryId) {
-        List<Album> list = albumService.getAllAlbumByCategoryId(categoryId);
+    public ResponseEntity<List<AlbumDto>> findAllAlbumByCategory(@PathVariable("cateId") int categoryId) {
+        List<AlbumDto> list = albumService.getAllAlbumByCategoryId(categoryId);
         if (list.isEmpty()) {
             return new ResponseEntity(null,HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<List<Album>>(list, HttpStatus.OK);
+        return new ResponseEntity<List<AlbumDto>>(list, HttpStatus.OK);
     }
 	
 	//Lay ra 10 random album
 	@RequestMapping(value = "/album/random-ten", method = RequestMethod.GET)
-    public ResponseEntity<List<Album>> listRandomTen() {
+    public ResponseEntity<List<AlbumDto>> listRandomTen() {
 		Random rand = new Random();
-		List<Album> list = new ArrayList<Album>();
-			List<Album> allList = albumService.getAll();
+		List<AlbumDto> list = new ArrayList<AlbumDto>();
+			List<AlbumDto> allList = albumService.getAll();
 			if(allList.size()<=10) {
 				list = allList;
 			}else {
 				do {
 					int randomIndex = rand.nextInt(allList.size());
-			        Album randomElement = allList.get(randomIndex);
+			        AlbumDto randomElement = allList.get(randomIndex);
 			        if(list == null || (list != null && list.isEmpty())){
 		        		list.add(randomElement);
 		        	}else {
@@ -104,20 +105,20 @@ public class AlbumController {
 			if (list.isEmpty()) {
 	            return new ResponseEntity(null,HttpStatus.NO_CONTENT);
 	        }
-	        return new ResponseEntity<List<Album>>(list, HttpStatus.OK);	
+	        return new ResponseEntity<List<AlbumDto>>(list, HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/album/{id}", method = RequestMethod.GET)
 	@ResponseBody
-    public ResponseEntity<Album> findById(@PathVariable("id") int id) {
-        Album list = albumService.getAlbumById(id);
+    public ResponseEntity<AlbumDto> findById(@PathVariable("id") int id) {
+        AlbumDto list = albumService.getAlbumById(id);
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 	
 	@RequestMapping(value = "/album", method = RequestMethod.POST)
 	@ResponseBody
-    public ResponseEntity<Album> saveAlbum(@RequestBody Album album) {
-        Album album1 = albumService.saveAlbum(album);
+    public ResponseEntity<AlbumDto> saveAlbum(@RequestBody AlbumDto albumDto) {
+        AlbumDto album1 = albumService.saveAlbum(albumDto);
         return new ResponseEntity<>(album1, HttpStatus.OK);
     }
 }

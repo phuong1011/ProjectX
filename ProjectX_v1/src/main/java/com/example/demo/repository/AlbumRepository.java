@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.example.demo.entities.Album;
 
-@Repository("albumRepository")
+@Repository
 public interface AlbumRepository extends JpaRepository<Album, Integer> {
 	List<Album> findAllByOrderByReleaseDateDesc();
 	

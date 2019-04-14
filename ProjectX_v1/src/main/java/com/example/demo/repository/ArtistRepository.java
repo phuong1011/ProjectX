@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.example.demo.entities.Artist;
 
-@Repository("artistRepository")
+@Repository
 public interface ArtistRepository extends JpaRepository<Artist, Integer> {
 	List<Artist> findByartistNameContaining(String name);
 }

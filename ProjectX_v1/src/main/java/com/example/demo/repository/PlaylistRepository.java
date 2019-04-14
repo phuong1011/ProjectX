@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.example.demo.entities.Playlist;
 
-@Repository("playlistRepository")
+@Repository
 public interface PlaylistRepository extends JpaRepository<Playlist, Integer>{
 	List<Playlist> findByUserId(String userId);
 	

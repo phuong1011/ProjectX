@@ -57,8 +57,8 @@ public class Album implements Serializable {
     @Temporal(TemporalType.DATE)
     @JsonFormat(pattern="yyyy-MM-dd")
     private Date releaseDate;
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name="category_id")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="category_id",updatable = false)
     private Category category;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="artist_id")

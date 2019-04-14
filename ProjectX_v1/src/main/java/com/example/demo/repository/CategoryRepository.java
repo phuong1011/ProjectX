@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import com.example.demo.entities.Category;
 
-@Repository("categoryRepository")
+@Repository
 public interface CategoryRepository extends JpaRepository<Category, String>{
 	Category findByCategoryId(Integer id);
 }
