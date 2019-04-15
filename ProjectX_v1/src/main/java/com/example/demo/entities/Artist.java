@@ -6,17 +6,7 @@
 package com.example.demo.entities;
 import java.io.Serializable;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -52,9 +42,9 @@ public class Artist implements Serializable {
     @Lob
     @Column(name = "background_path")
     private String backgroundPath;
-    @JoinColumn(name = "userId", referencedColumnName = "userId",columnDefinition="varchar(50)")
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
-    @JsonIgnore
+    @JoinColumn(name = "userId",columnDefinition="varchar(50)")
+    @OneToOne(optional = false, fetch = FetchType.EAGER)
+    //@JsonIgnore
     private User userId;
 
     public Artist() {

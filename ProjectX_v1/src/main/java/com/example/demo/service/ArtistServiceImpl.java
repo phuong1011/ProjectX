@@ -28,4 +28,14 @@ public class ArtistServiceImpl implements ArtistService {
 		return artistRepository.getOne(id);
 	}
 
+	@Override
+	public Artist save(Artist artist) {
+		return artistRepository.save(artist);
+	}
+
+	@Override
+	public Artist FindByUserId(String userId) {
+		return artistRepository.findByUserId(userId);
+	}
+
 }

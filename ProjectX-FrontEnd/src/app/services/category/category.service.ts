@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 import { category } from 'src/app/models/category';
 
 @Injectable({
@@ -8,7 +7,7 @@ import { category } from 'src/app/models/category';
 })
 export class CategoryService {
 
-  formData : category;
+  formData: category;
   list: category[];
 
   constructor(private http: HttpClient) { }
