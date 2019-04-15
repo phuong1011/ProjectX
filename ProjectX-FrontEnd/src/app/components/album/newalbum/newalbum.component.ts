@@ -33,10 +33,14 @@ export class NewalbumComponent implements OnInit {
 
   saveAlbum(){
     console.log(JSON.stringify(this.newAlbum));
-    this.albumService.postCategory(this.newAlbum).subscribe(res => {
-      this.router.navigate(['/album']);
-      this.toastr.success('Inserted successfully', 'Category plan');
-    });
+    if(this.newAlbum.trackList.length > 0){
+      this.albumService.postCategory(this.newAlbum).subscribe(res => {
+        this.router.navigate(['/album']);
+        this.toastr.success('Inserted successfully', 'Album plan');
+      });
+    }else{
+      this.toastr.warning('Please insert 1 or more track', 'Album plan');
+    }
   }
 
   deleteTrack(index){

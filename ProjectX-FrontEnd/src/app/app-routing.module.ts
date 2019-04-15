@@ -4,13 +4,17 @@ import { HomeComponent } from './components/home/home.component';
 import { CategoryComponent } from './components/category/category.component';
 import { AlbumComponent } from './components/album/album.component';
 import { NewalbumComponent } from './components/album/newalbum/newalbum.component';
+import { LoginComponent } from './components/login/login.component';
+import { AuthguardService } from './services/authGuard/authguard.service';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
-  { path: 'category', component: CategoryComponent },
-  { path: 'album', component: AlbumComponent },
-  { path: 'newalbum', component: NewalbumComponent }
+  { path: 'login', component: LoginComponent },
+
+  { path: 'category', component: CategoryComponent ,canActivate: [AuthguardService] },
+  { path: 'album', component: AlbumComponent ,canActivate: [AuthguardService]},
+  { path: 'newalbum', component: NewalbumComponent ,canActivate: [AuthguardService] }
 ];
 
 @NgModule({

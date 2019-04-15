@@ -110,6 +110,10 @@ public class AlbumServiceImpl implements AlbumService {
 		return AlbumMapper.MAPPER.toDto(album1);
 	}
 
-	
-	
+    @Override
+    public void deleteAlbum(int id) {
+        albumRepository.deleteById(id);
+    }
+
+
 }

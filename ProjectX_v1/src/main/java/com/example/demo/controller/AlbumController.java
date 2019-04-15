@@ -117,8 +117,15 @@ public class AlbumController {
 	
 	@RequestMapping(value = "/album", method = RequestMethod.POST)
 	@ResponseBody
-    public ResponseEntity<AlbumDto> saveAlbum(@RequestBody AlbumDto albumDto) {
-        AlbumDto album1 = albumService.saveAlbum(albumDto);
-        return new ResponseEntity<>(album1, HttpStatus.OK);
-    }
+	public ResponseEntity<AlbumDto> saveAlbum(@RequestBody AlbumDto albumDto) {
+		AlbumDto album1 = albumService.saveAlbum(albumDto);
+		return new ResponseEntity<>(album1, HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/album/{id}", method = RequestMethod.DELETE)
+	@ResponseBody
+	public ResponseEntity delAlbum(@PathVariable("id") int id) {
+		albumService.deleteAlbum(id);
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
 }

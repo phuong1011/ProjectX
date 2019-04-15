@@ -16,14 +16,21 @@
 				</form>
 				<div id="navbar-menu">
 					<ul class="nav navbar-nav navbar-right">
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="assets/img/user.png" class="img-circle" alt="Avatar"> <span>Admin</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
+						<li *ngIf="auth.firebaseUser$ | async as user;else loginBtn" class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="assets/img/user.png" class="img-circle" alt="Avatar"> <span>{{user.displayName}}</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
 							<ul class="dropdown-menu">
 								<li><a href="#"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
 								<li><a href="#"><i class="lnr lnr-cog"></i> <span>Settings</span></a></li>
-								<li><a href="#"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
+								<li><a href="#" (click)='logout()'><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
 							</ul>
 						</li>
+						<ng-template #loginBtn>
+							<li class="dropdown">
+								<div class="navbar-btn">
+									<a routerLink="/login" class="btn btn-primary">Login</a>
+								</div>
+							</li>
+						</ng-template>
 					</ul>
 				</div>
 			</div>
@@ -31,7 +38,7 @@
 		<!-- END NAVBAR -->
 		<!-- LEFT SIDEBAR -->
 		<div id="sidebar-nav" class="sidebar">
-			<div class="sidebar-scroll">
+			<div *ngIf="auth.firebaseUser$ | async" class="sidebar-scroll">
 				<nav>
 					<ul class="nav">
 						<li><a routerLink="/home" routerLinkActive="active"><i class="lnr lnr-home"></i> <span>Home</span></a></li>

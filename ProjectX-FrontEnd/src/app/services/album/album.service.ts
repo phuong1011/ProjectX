@@ -30,7 +30,7 @@ export class AlbumService {
     return this.http.put(this.url+'/album',formData);
   }
 
-  deleteCategory(id : number){
-    return this.http.delete(this.url+'/category/'+id);
+  deleteAlbum(id : number){
+    return this.http.delete(this.url+'/album/'+id);
   }
 }

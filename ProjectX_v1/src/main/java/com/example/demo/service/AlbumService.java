@@ -13,4 +13,5 @@ public interface AlbumService {
 	List<AlbumDto> getAllFollowAlbumByUserId(String userId);
 	AlbumDto getAlbumById(int id);
 	AlbumDto saveAlbum(AlbumDto album);
+	void deleteAlbum(int id);
 }

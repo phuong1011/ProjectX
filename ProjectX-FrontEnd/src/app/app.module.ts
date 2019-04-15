@@ -13,6 +13,13 @@ import { ToastrModule } from 'ngx-toastr';
 import { AlbumComponent } from './components/album/album.component';
 import { NewalbumComponent } from './components/album/newalbum/newalbum.component';
 import { EditalbumComponent } from './components/album/editalbum/editalbum.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoginComponent } from './components/login/login.component';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireDatabaseModule } from 'angularfire2/database'; 
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -22,16 +29,19 @@ import { EditalbumComponent } from './components/album/editalbum/editalbum.compo
     CategoryComponent,
     AlbumComponent,
     NewalbumComponent,
-    EditalbumComponent
+    EditalbumComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ToastrModule.forRoot()
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
+    AngularFireModule.initializeApp(environment.firebase)
   ],
-  providers: [LoginService,HttpClient],
+  providers: [LoginService,HttpClient,AngularFireAuth],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

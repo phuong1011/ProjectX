@@ -15,4 +15,17 @@ export class AlbumComponent implements OnInit {
     this.service.refreshList();
   }
 
+  onDelete(id: number, size: number) {
+    if(size == 0){
+      if (confirm('Are you sure to delete this record?')) {
+        this.service.deleteAlbum(id).subscribe(res => {
+          this.service.refreshList();
+          this.toastr.warning('Deleted successfully', 'Album plan');
+        });
+      }
+    }else{
+      this.toastr.warning('Cannot delete album with 1 or more track', 'Album plan');
+    }
+  }
+
 }
