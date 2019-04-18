@@ -21,8 +21,6 @@
       <thead>
         <tr>
           <th>Name</th>
-          <th>Duration</th>
-          <th>Size</th>
           <th>Description</th>
           <th>Path</th>
           <th></th>
@@ -31,8 +29,6 @@
       <tbody>
         <tr *ngFor="let track of newAlbum.trackList;let i = index">
           <td>{{track.trackName}}</td>
-          <td>{{track.duration}}</td>
-          <td>{{track.size}}</td>
           <td>{{track.description}}</td>
           <td>{{track.audioPath}}</td>
           <td><button class="btn btn-xs btn-danger" type="button" title="delete" (click)=deleteTrack(i)>
@@ -53,25 +49,15 @@
           #nameTrack="ngModel">
       </div>
       <div class="col-md-4">
-          <label for="name">Duration track: <span class="required">*</span></label>
-          <input type="text" id="durationTrack" required [(ngModel)]="track.duration" name="durationTrack" class="form-control"
-            #durationTrack="ngModel">
-      </div>
-      <div class="col-md-4">
-          <label for="name">Size track: <span class="required">*</span></label>
-          <input type="text" id="sizeTrack" required [(ngModel)]="track.size" name="sizeTrack" class="form-control"
-            #sizeTrack="ngModel">
-      </div>
-      <div class="col-md-4">
           <label for="name">Description track: <span class="required">*</span></label>
           <input type="text" id="descriptionTrack" required [(ngModel)]="track.description" name="descriptionTrack" class="form-control"
             #descriptionTrack="ngModel">
       </div>
-      <div class="col-md-4">
+      <div class="col-md-3">
           <label for="name">image: <span class="required">*</span></label>
           <input type="file" id="imageTrack" required name="imageTrack" accept="image/*" (change)="selectFileTrack($event)">
       </div>
-      <div class="col-md-4">
+      <div class="col-md-1">
           <br/>
           <button type="button" class="btn btn-success" title="Add" (click)=addTrack()>Add</button>
       </div>

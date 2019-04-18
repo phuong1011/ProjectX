@@ -22,13 +22,13 @@ export class NewalbumComponent implements OnInit {
   ngOnInit() {
     this.categoryService.refreshList();
     this.newAlbum = new album(0,"","","",new category(0,"","",""),{artistId: 1},[]);
-    this.track = new track(0,"","","",0,"","");
+    this.track = new track(0,"","","","");
   }
 
   addTrack(){
     console.log("begin");
     this.newAlbum.trackList.push(this.track);
-    this.track = new track(0,"","","",0,"","1");
+    this.track = new track(0,"","","","1");
   }
 
   saveAlbum(){

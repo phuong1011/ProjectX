@@ -12,10 +12,8 @@ import java.util.List;
 public class TrackDto {
     private Integer trackId;
     private String trackName;
-    private long duration;
-    private String audioPath;
-    private int size;
     private String description;
+    private String audioPath;
     private String userUploadId;
     private List<Artist> artists;
 }

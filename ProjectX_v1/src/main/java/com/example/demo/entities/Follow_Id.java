@@ -1,5 +1,7 @@
 package com.example.demo.entities;
 
+import lombok.Data;
+
 import java.io.Serializable;
 
 import javax.persistence.Embeddable;
@@ -8,6 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.Size;
 
 @Embeddable
+@Data
 public class Follow_Id implements Serializable {
 	@ManyToOne()
 	@JoinColumn(name="user_id",columnDefinition="varchar(50)")
@@ -17,22 +20,6 @@ public class Follow_Id implements Serializable {
 	@ManyToOne()
 	@JoinColumn(name="artist_id")
 	private Artist artist;
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-	public Artist getArtist() {
-		return artist;
-	}
-
-	public void setArtist(Artist artist) {
-		this.artist = artist;
-	}
 	
 	
 }

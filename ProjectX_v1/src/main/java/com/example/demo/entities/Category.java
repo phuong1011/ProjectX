@@ -22,6 +22,7 @@ import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlTransient;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
 
 /**
  *
@@ -29,6 +30,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  */
 @Entity
 @Table(name = "category")
+@Data
 public class Category implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -47,75 +49,5 @@ public class Category implements Serializable {
     @Basic(optional = false)
     @Column(name = "image_path")
     private String image_path;
-
-    public Category() {
-    }
-
-    public Category(Integer categoryId) {
-        this.categoryId = categoryId;
-    }
-
-    public Category(Integer categoryId, String categoryName, String detail) {
-        this.categoryId = categoryId;
-        this.categoryName = categoryName;
-        this.detail = detail;
-    }
-
-    public Integer getCategoryId() {
-        return categoryId;
-    }
-
-    public void setCategoryId(Integer categoryId) {
-        this.categoryId = categoryId;
-    }
-
-    public String getCategoryName() {
-        return categoryName;
-    }
-
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
-    }
-
-    public String getDetail() {
-        return detail;
-    }
-
-    public void setDetail(String detail) {
-        this.detail = detail;
-    }
-
-    public String getImage_path() {
-		return image_path;
-	}
-
-	public void setImage_path(String image_path) {
-		this.image_path = image_path;
-	}
-
-	@Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (categoryId != null ? categoryId.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Category)) {
-            return false;
-        }
-        Category other = (Category) object;
-        if ((this.categoryId == null && other.categoryId != null) || (this.categoryId != null && !this.categoryId.equals(other.categoryId))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "cc2.Category[ categoryId=" + categoryId + " ]";
-    }
     
 }
