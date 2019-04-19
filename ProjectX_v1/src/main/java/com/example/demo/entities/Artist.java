@@ -47,7 +47,7 @@ public class Artist implements Serializable {
     @JoinColumn(name = "userId",columnDefinition="varchar(50)")
     @OneToOne(optional = false, fetch = FetchType.EAGER)
     //@JsonIgnore
-    private User userId;
+    private User user;
 
 
 }

@@ -12,6 +12,6 @@ import com.example.demo.entities.Artist;
 public interface ArtistRepository extends JpaRepository<Artist, Integer> {
 	List<Artist> findByartistNameContaining(String name);
 
-	@Query("SELECT u FROM Artist u WHERE u.userId.userId = ?1")
+	@Query("SELECT u FROM Artist u WHERE u.user.userId = ?1")
 	Artist findByUserId(String userId);
 }

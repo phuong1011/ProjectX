@@ -36,7 +36,7 @@ public class UserType implements Serializable {
     @Basic(optional = false)
     @Column(name = "typeName")
     private String typeName;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "typeId")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userType")
     @JsonIgnore
     private List<User> userList;
 

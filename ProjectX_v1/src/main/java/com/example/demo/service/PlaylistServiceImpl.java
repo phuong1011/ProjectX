@@ -48,8 +48,8 @@ public class PlaylistServiceImpl implements PlaylistService{
 		List<Follow> follows = followRepository.findByUserId(userId);
 		List<Playlist> playlists = new ArrayList<Playlist>();
 		for (Follow follow : follows) {
-			System.out.println(follow.getId().getArtist().getUserId());
-			playlists.addAll(playlistRepository.findByUserId(follow.getId().getArtist().getUserId().getUserId()));
+			System.out.println(follow.getId().getArtist().getUser());
+			playlists.addAll(playlistRepository.findByUserId(follow.getId().getArtist().getUser().getUserId()));
 		}
 		return playlists;
 	}

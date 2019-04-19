@@ -53,9 +53,9 @@ public class User implements Serializable {
     @Basic(optional = false)
     @Column(name = "provider_id")
     private String providerId;
-    @JoinColumn(name = "typeId", referencedColumnName = "typeId")
+    @JoinColumn(name = "userType", referencedColumnName = "typeId")
     @ManyToOne(optional = false)
-    private UserType typeId;
+    private UserType userType;
 
 
 }
