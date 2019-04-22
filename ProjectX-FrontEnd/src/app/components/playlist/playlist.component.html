@@ -1,0 +1,35 @@
+<div class="panel">
+  <div class="panel-heading">
+    <h3 class="panel-title">Playlist list</h3>
+  </div>
+  <div class="panel-body">
+    <div class="float-right">
+      <a routerLink="/newplaylist" type="button" class="btn btn-success" title="Add"><span class="glyphicon glyphicon-plus"></span></a>
+    </div>
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Category</th>
+          <th>Track number</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let playlist of service.list">
+          <td>{{playlist.playlistId}}</td>
+          <td>{{playlist.playlistName}}</td>
+          <td>{{playlist.category.categoryName}}</td>
+          <td>{{playlist.trackList.length}}</td>
+          <td><button type="button" class="btn btn-xs btn-warning" title="edit" data-toggle="modal" data-target="#myModal">
+            <span class="glyphicon glyphicon-pencil"></span>
+          </button>
+          <button class="btn btn-xs btn-danger" type="button" title="delete">
+            <span class="glyphicon glyphicon-remove"></span>
+          </button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
