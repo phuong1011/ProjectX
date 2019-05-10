@@ -24,26 +24,14 @@ import com.example.demo.repository.TrackRepository;
 @Service("albumService")
 public class AlbumServiceImpl implements AlbumService {
 
-	private AlbumRepository albumRepository;
-	
-	private FollowRepository followRepository;
-	
 	@Autowired
-	private ArtistRepository artistRepository;
-	
+	private AlbumRepository albumRepository;
+
+	@Autowired
+	private FollowRepository followRepository;
+
 	@Autowired
 	private TrackRepository trackRepository;
-
-
-	@Autowired
-	public void setFollowRepository(FollowRepository followRepository) {
-		this.followRepository = followRepository;
-	}
-
-	@Autowired
-	public void setAlbumRepository(AlbumRepository albumRepository) {
-		this.albumRepository = albumRepository;
-	}
 
 	@Override
 	public List<AlbumDto> getAll() {

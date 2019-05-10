@@ -14,11 +14,11 @@ export class LoginService {
     this.firebaseUser$ = auth.authState;
    }
 
-  login(){
+  login() {
     this.auth.auth.signInWithRedirect(new firebase.auth.GoogleAuthProvider);
   }
 
-  logout(){
+  logout() {
     this.auth.auth.signOut();
   }
 }

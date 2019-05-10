@@ -25,7 +25,7 @@ export class NewalbumComponent implements OnInit {
     this.track = new track(0,"","","","");
   }
 
-  addTrack(){
+  addTrack() {
     console.log("begin");
     this.newAlbum.trackList.push(this.track);
     this.track = new track(0,"","","","1");
