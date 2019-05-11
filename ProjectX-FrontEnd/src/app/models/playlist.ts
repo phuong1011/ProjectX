@@ -8,7 +8,7 @@ export class playlist{
         public imagePath: string,
         public type: number,
         public category: category,
-        public user: {userId: string },
+        public userId: string,
         public tracks: track[]
     ){ }
 }

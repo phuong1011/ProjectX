@@ -25,9 +25,8 @@
       </thead>
       <tbody>
         <tr *ngFor="let track of newPlaylist.tracks;let i = index">
+          <td>{{track.trackId}}</td>
           <td>{{track.trackName}}</td>
-          <td>{{track.description}}</td>
-          <td>{{track.audioPath}}</td>
           <td><button class="btn btn-xs btn-danger" type="button" title="delete" (click)=deleteTrack(i)>
               <span class="glyphicon glyphicon-remove"></span>
             </button></td>
@@ -40,23 +39,21 @@
   <br/>
     <div class="row panel-body">
       <h3>Track in playlist</h3>
-      <div class="col-md-4">
-        <label for="name">Name track: <span class="required">*</span></label>
-        <input type="text" id="nameTrack" required [(ngModel)]="track.trackName" name="nameTrack" class="form-control"
-          #nameTrack="ngModel">
-      </div>
-      <div class="col-md-4">
-          <label for="name">Description track: <span class="required">*</span></label>
-          <input type="text" id="descriptionTrack" required [(ngModel)]="track.description" name="descriptionTrack" class="form-control"
-            #descriptionTrack="ngModel">
-      </div>
-      <div class="col-md-4">
-          <label for="name">image: <span class="required">*</span></label>
-          <input type="file" id="imageTrack" required name="imageTrack" accept="image/*" (change)="selectFileTrack($event)">
-      </div>
-      <div class="col-md-4">
-          <br/>
-          <button type="button" class="btn btn-success" title="Add" (click)=addTrack()>Add</button>
-      </div>
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let track of trackservice.list">
+            <td>{{track.trackId}}</td>
+            <td>{{track.trackName}}</td>
+            <td><button type="button" class="btn btn-success" title="Add" (click)=addTrack(track)>Add</button></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 </div>

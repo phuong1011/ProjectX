@@ -4,8 +4,10 @@ import { ToastrService } from 'ngx-toastr';
 import { category } from 'src/app/models/category';
 import { track } from 'src/app/models/track';
 import { PlaylistService } from 'src/app/services/playlist/playlist.service';
+import { TrackService } from 'src/app/services/track/track.service';
 import { Router } from '@angular/router';
 import { playlist } from 'src/app/models/playlist';
+import {user} from '../../../models/user';
 
 @Component({
   selector: 'app-newplaylist',
@@ -14,27 +16,34 @@ import { playlist } from 'src/app/models/playlist';
 })
 export class NewplaylistComponent implements OnInit {
 
-  constructor(private categoryService: CategoryService,private playlistervice: PlaylistService,private toastr: ToastrService, private router: Router) { }
+  constructor(private categoryService: CategoryService,private playlistservice: PlaylistService,private trackservice: TrackService,private toastr: ToastrService, private router: Router) { }
 
   newPlaylist: playlist;
   track: track;
+  tracks: track[];
+  user: user = JSON.parse(localStorage.getItem('USER_INFO'));
 
   ngOnInit() {
     this.categoryService.refreshList();
-    this.newPlaylist = new playlist(0,"","",0,new category(0,"","",""),{userId: ""},[]);
+    this.newPlaylist = new playlist(0,"","",0,new category(0,"","",""),this.user.userId,[]);
     this.track = new track(0,"","","","");
+    console.log(localStorage.getItem('USER_INFO'));
+    this.allTrack();
   }
 
-  addTrack(){
+  allTrack(){
+    this.trackservice.refreshList();
+  }
+
+  addTrack(track){
     console.log("begin");
-    this.newPlaylist.tracks.push(this.track);
-    this.track = new track(0,"","","","1");
+    this.newPlaylist.tracks.push(track);
   }
 
-  saveAlbum(){
+  savePlaylist(){
     console.log(JSON.stringify(this.newPlaylist));
     if(this.newPlaylist.tracks.length > 0){
-      this.playlistervice.postPlaylist(this.newPlaylist).subscribe(res => {
+      this.playlistservice.postPlaylist(this.newPlaylist).subscribe(res => {
         this.router.navigate(['/album']);
         this.toastr.success('Inserted successfully', 'Album plan');
       });
