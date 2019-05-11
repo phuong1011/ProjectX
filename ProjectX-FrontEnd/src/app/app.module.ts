@@ -18,6 +18,8 @@ import { LoginComponent } from './components/login/login.component';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
+import { PlaylistComponent } from './components/playlist/playlist.component';
+import { NewplaylistComponent } from './components/playlist/newplaylist/newplaylist.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { environment } from 'src/environments/environment';
     AlbumComponent,
     NewalbumComponent,
     EditalbumComponent,
-    LoginComponent
+    LoginComponent,
+    PlaylistComponent,
+    NewplaylistComponent
   ],
   imports: [
     BrowserModule,
