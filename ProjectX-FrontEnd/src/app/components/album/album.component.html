@@ -24,9 +24,9 @@
           <td>{{album.releaseDate}}</td>
           <td>{{album.category.categoryName}}</td>
           <td>{{album.trackList.length}}</td>
-          <td><button type="button" class="btn btn-xs btn-warning" title="edit" data-toggle="modal" data-target="#myModal">
+          <td><a class="btn btn-xs btn-warning" routerLink="/editalbum/{{album.albumId}}">
             <span class="glyphicon glyphicon-pencil"></span>
-          </button>
+          </a>
           <button class="btn btn-xs btn-danger" type="button" title="delete" (click)="onDelete(album.albumId, album.trackList.length)">
             <span class="glyphicon glyphicon-remove"></span>
           </button></td>

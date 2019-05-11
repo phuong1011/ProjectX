@@ -9,6 +9,7 @@ export class AlbumService {
 
   formData : album;
   list: album[];
+  album: album;
 
   constructor(private http: HttpClient) { }
 
@@ -24,6 +25,13 @@ export class AlbumService {
 
   postCategory(formData : album){
     return this.http.post(this.url+'album',formData);
+  }
+
+  getAlbumById(id) {
+    this.http.get(this.url + 'album/' + id)
+      .toPromise().then(res => {
+      this.album = res as album;
+    });
   }
 
   putCategory(formData : album){

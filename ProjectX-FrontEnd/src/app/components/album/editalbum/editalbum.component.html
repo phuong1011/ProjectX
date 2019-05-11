@@ -1,3 +1,17 @@
-<p>
-  editalbum works!
-</p>
+<table class="table table-bordered table-hover">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Path</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>{{albumService.album.albumName}}</td>
+    <td>{{albumService.album.imagePath}}</td>
+    <td>{{albumService.album.releaseDate}}</td>
+    <td>{{albumService.album.trackList[1]}}</td>
+  </tr>
+  </tbody>
+</table>
