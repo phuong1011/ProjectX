@@ -1,17 +1,36 @@
-<table class="table table-bordered table-hover">
-  <thead>
-  <tr>
-    <th>Name</th>
-    <th>Description</th>
-    <th>Path</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr>
-    <td>{{albumService.album.albumName}}</td>
-    <td>{{albumService.album.imagePath}}</td>
-    <td>{{albumService.album.releaseDate}}</td>
-    <td>{{albumService.album.trackList[1]}}</td>
-  </tr>
-  </tbody>
-</table>
+<div class="panel">
+  <div class="panel-heading">
+    <h3 class="panel-title">Album <b>{{albumService.album.albumName}}</b></h3>
+  </div>
+  <div class="panel-body">
+    <table class="table table-bordered table-hover">
+      <thead>
+      <tr>
+        <th [ngStyle]="{'text-align': 'center'}">Tên album</th>
+        <td [ngStyle]="{'text-align': 'center'}">{{albumService.album.albumName}}</td>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <th [ngStyle]="{'text-align': 'center'}">Ảnh đại diện</th>
+        <td [ngStyle]="{'text-align': 'center'}">{{albumService.album.imagePath}}</td>
+      </tr>
+      <tr>
+        <th [ngStyle]="{'text-align': 'center'}">Ngày ra mắt</th>
+        <td [ngStyle]="{'text-align': 'center'}">{{albumService.album.releaseDate}}</td>
+      </tr>
+      <tr>
+        <th [ngStyle]="{'text-align': 'center'}" [attr.colspan]="2">Bài hát trong album</th>
+      </tr>
+      <tr>
+        <th [ngStyle]="{'text-align': 'center'}">Tên bài hát</th>
+        <th [ngStyle]="{'text-align': 'center'}">Ca sĩ</th>
+      </tr>
+      <tr *ngFor="let track of albumService.album.trackList">
+        <td [ngStyle]="{'text-align': 'center'}">{{track.trackName}}</td>
+        <td [ngStyle]="{'text-align': 'center'}">{{albumService.album.artist.artistName}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
