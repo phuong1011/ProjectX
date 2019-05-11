@@ -9,6 +9,6 @@ export class playlist{
         public type: number,
         public category: category,
         public user: {userId: string },
-        public trackList: track[]
+        public tracks: track[]
     ){ }
 }

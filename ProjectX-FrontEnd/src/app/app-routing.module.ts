@@ -6,6 +6,8 @@ import { AlbumComponent } from './components/album/album.component';
 import { NewalbumComponent } from './components/album/newalbum/newalbum.component';
 import { LoginComponent } from './components/login/login.component';
 import { AuthguardService } from './services/authGuard/authguard.service';
+import { PlaylistComponent } from './components/playlist/playlist.component';
+import { NewplaylistComponent } from './components/playlist/newplaylist/newplaylist.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -14,7 +16,9 @@ const routes: Routes = [
 
   { path: 'category', component: CategoryComponent ,canActivate: [AuthguardService] },
   { path: 'album', component: AlbumComponent ,canActivate: [AuthguardService]},
-  { path: 'newalbum', component: NewalbumComponent ,canActivate: [AuthguardService] }
+  { path: 'playlist', component: PlaylistComponent ,canActivate: [AuthguardService]},
+  { path: 'newalbum', component: NewalbumComponent ,canActivate: [AuthguardService] },
+  { path: 'newplaylist', component: NewplaylistComponent ,canActivate: [AuthguardService]}
 ];
 
 @NgModule({

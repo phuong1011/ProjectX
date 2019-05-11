@@ -27,13 +27,13 @@ export class NewplaylistComponent implements OnInit {
 
   addTrack(){
     console.log("begin");
-    this.newPlaylist.trackList.push(this.track);
+    this.newPlaylist.tracks.push(this.track);
     this.track = new track(0,"","","","1");
   }
 
   saveAlbum(){
     console.log(JSON.stringify(this.newPlaylist));
-    if(this.newPlaylist.trackList.length > 0){
+    if(this.newPlaylist.tracks.length > 0){
       this.playlistervice.postPlaylist(this.newPlaylist).subscribe(res => {
         this.router.navigate(['/album']);
         this.toastr.success('Inserted successfully', 'Album plan');
@@ -45,7 +45,7 @@ export class NewplaylistComponent implements OnInit {
 
   deleteTrack(index){
     console.log(index);
-    this.newPlaylist.trackList.splice(index,1);
+    this.newPlaylist.tracks.splice(index,1);
   }
 
   selectFile(e){
